@@ -1,0 +1,3 @@
+../DMA/DMA.c:28:6:DMA_Init	16	static
+../DMA/DMA.c:152:6:DMA_Interrupt_Init	16	static
+../DMA/DMA.c:341:6:DMA_Trigger	16	static
