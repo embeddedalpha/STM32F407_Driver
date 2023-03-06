@@ -3,7 +3,11 @@ Src/main.o: ../Src/main.c ../Inc/main.h ../Inc/stm32f407xx.h \
  ../Inc/cmsis_gcc.h ../Inc/mpu_armv7.h ../Inc/system_stm32f4xx.h \
  ../Inc/stm32f4xx.h \
  D:/Files/STM32F407_Workspace/ADC_Driver/Console/Console.h \
- D:/Files/STM32F407_Workspace/ADC_Driver/GPIO/GPIO.h
+ D:/Files/STM32F407_Workspace/ADC_Driver/GPIO/GPIO.h \
+ D:/Files/STM32F407_Workspace/ADC_Driver/Driver/ADC.h \
+ D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA.h \
+ D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA_flags.h \
+ D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA_V1.h
 ../Inc/main.h:
 ../Inc/stm32f407xx.h:
 ../Inc/core_cm4.h:
@@ -15,3 +19,7 @@ Src/main.o: ../Src/main.c ../Inc/main.h ../Inc/stm32f407xx.h \
 ../Inc/stm32f4xx.h:
 D:/Files/STM32F407_Workspace/ADC_Driver/Console/Console.h:
 D:/Files/STM32F407_Workspace/ADC_Driver/GPIO/GPIO.h:
+D:/Files/STM32F407_Workspace/ADC_Driver/Driver/ADC.h:
+D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA.h:
+D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA_flags.h:
+D:/Files/STM32F407_Workspace/ADC_Driver/DMA/DMA_V1.h:

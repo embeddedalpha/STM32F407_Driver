@@ -20,7 +20,7 @@ int main(void)
 	Delay_Config();
 	Console_Init(USART1, 460800);
 
-	ADC_Init();
+//	ADC_Init();
 
 
 
@@ -28,8 +28,8 @@ int main(void)
 
 	for(;;)
 	{
-		printConsole(USART1, "%f \r\n",Get_IC_Temperature());
-		Delay_ms(100);
+//		printConsole(USART1, "%f \r\n",Get_IC_Temperature());
+//		Delay_ms(100);
 
 
 	}
