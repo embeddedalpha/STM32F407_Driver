@@ -16,7 +16,7 @@
 - [ ] I2C
 - [ ] USART
 - [ ] GPIO
-- [ ] ADC
+- [x] [ADC](https://github.com/embeddedalpha/STM32F407_Driver/tree/main/ADC_Driver)
 - [ ] DAC
 - [ ] DCMI
 - [ ] TIM
