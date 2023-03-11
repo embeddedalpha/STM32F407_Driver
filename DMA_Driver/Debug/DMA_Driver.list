@@ -5,47 +5,47 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   000001a8  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         0000099c  080001a8  080001a8  000101a8  2**2
+  1 .text         00000418  080001a8  080001a8  000101a8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000000  08000b44  08000b4c  00010b4c  2**0
-                  CONTENTS, ALLOC, LOAD, DATA
-  3 .ARM.extab    00000000  08000b44  08000b44  00010b4c  2**0
+  2 .rodata       00000010  080005c0  080005c0  000105c0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .ARM.extab    00000000  080005d0  080005d0  00020004  2**0
                   CONTENTS
-  4 .ARM          00000000  08000b44  08000b44  00010b4c  2**0
+  4 .ARM          00000000  080005d0  080005d0  00020004  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08000b44  08000b4c  00010b4c  2**0
+  5 .preinit_array 00000000  080005d0  080005d0  00020004  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08000b44  08000b44  00010b44  2**2
+  6 .init_array   00000004  080005d0  080005d0  000105d0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  08000b48  08000b48  00010b48  2**2
+  7 .fini_array   00000004  080005d4  080005d4  000105d4  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000000  20000000  20000000  00010b4c  2**0
+  8 .data         00000004  20000000  080005d8  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .ccmram       00000000  10000000  10000000  00010b4c  2**0
+  9 .ccmram       00000000  10000000  10000000  00020004  2**0
                   CONTENTS
- 10 .bss          0000003c  20000000  20000000  00020000  2**2
+ 10 .bss          0000001c  20000004  20000004  00020004  2**2
                   ALLOC
- 11 ._user_heap_stack 00000604  2000003c  2000003c  00020000  2**0
+ 11 ._user_heap_stack 00000600  20000020  20000020  00020004  2**0
                   ALLOC
- 12 .ARM.attributes 00000030  00000000  00000000  00010b4c  2**0
+ 12 .ARM.attributes 00000030  00000000  00000000  00020004  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00000cb4  00000000  00000000  00010b7c  2**0
+ 13 .debug_info   00000f41  00000000  00000000  00020034  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00000368  00000000  00000000  00011830  2**0
+ 14 .debug_abbrev 000002f1  00000000  00000000  00020f75  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000000a0  00000000  00000000  00011b98  2**3
+ 15 .debug_aranges 00000090  00000000  00000000  00021268  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000068  00000000  00000000  00011c38  2**3
+ 16 .debug_ranges 00000068  00000000  00000000  000212f8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00019bdf  00000000  00000000  00011ca0  2**0
+ 17 .debug_macro  00000464  00000000  00000000  00021360  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00001807  00000000  00000000  0002b87f  2**0
+ 18 .debug_line   00000d3c  00000000  00000000  000217c4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008e00d  00000000  00000000  0002d086  2**0
+ 19 .debug_str    0008e1fa  00000000  00000000  00022500  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000bb093  2**0
+ 20 .comment      00000050  00000000  00000000  000b06fa  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00000138  00000000  00000000  000bb0e4  2**2
+ 21 .debug_frame  00000144  00000000  00000000  000b074c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,9 +62,9 @@ Disassembly of section .text:
  80001ba:	2301      	movs	r3, #1
  80001bc:	7023      	strb	r3, [r4, #0]
  80001be:	bd10      	pop	{r4, pc}
- 80001c0:	20000000 	.word	0x20000000
+ 80001c0:	20000004 	.word	0x20000004
  80001c4:	00000000 	.word	0x00000000
- 80001c8:	08000b2c 	.word	0x08000b2c
+ 80001c8:	080005a8 	.word	0x080005a8
 
 080001cc <frame_dummy>:
  80001cc:	b508      	push	{r3, lr}
@@ -75,1504 +75,675 @@ Disassembly of section .text:
  80001d6:	f3af 8000 	nop.w
  80001da:	bd08      	pop	{r3, pc}
  80001dc:	00000000 	.word	0x00000000
- 80001e0:	20000004 	.word	0x20000004
- 80001e4:	08000b2c 	.word	0x08000b2c
+ 80001e0:	20000008 	.word	0x20000008
+ 80001e4:	080005a8 	.word	0x080005a8
 
-080001e8 <DMA_Init>:
- * @brief		:	Initialize DMA Hardware
- * @param 		:	DMA_Config
+080001e8 <__NVIC_SetPriority>:
+  \param [in]      IRQn  Interrupt number.
+  \param [in]  priority  Priority to set.
+  \note    The priority cannot be set for every processor exception.
  */
-
-void DMA_Init(DMA_Config *self)
+__STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
 {
  80001e8:	b480      	push	{r7}
  80001ea:	b083      	sub	sp, #12
  80001ec:	af00      	add	r7, sp, #0
- 80001ee:	6078      	str	r0, [r7, #4]
-	/*
-	 * Select DMA Controller
-	 */
-
-	if(self != NULL)
- 80001f0:	687b      	ldr	r3, [r7, #4]
- 80001f2:	2b00      	cmp	r3, #0
- 80001f4:	f000 8146 	beq.w	8000484 <DMA_Init+0x29c>
-	{
-		if(self->Controller_Typedef == DMA1)
- 80001f8:	687b      	ldr	r3, [r7, #4]
- 80001fa:	681b      	ldr	r3, [r3, #0]
- 80001fc:	4a7c      	ldr	r2, [pc, #496]	; (80003f0 <DMA_Init+0x208>)
- 80001fe:	4293      	cmp	r3, r2
- 8000200:	d15a      	bne.n	80002b8 <DMA_Init+0xd0>
-		{
-			controller= 1;
- 8000202:	4b7c      	ldr	r3, [pc, #496]	; (80003f4 <DMA_Init+0x20c>)
- 8000204:	2201      	movs	r2, #1
- 8000206:	601a      	str	r2, [r3, #0]
-			/*
-			 *	Low Power mode is selected only when needed otherwise normal DMA is used
-			 */
-			if(self->Low_Power_Mode == DMA_Lowe_Power_Mode_Enable)
- 8000208:	687b      	ldr	r3, [r7, #4]
- 800020a:	791b      	ldrb	r3, [r3, #4]
- 800020c:	2b00      	cmp	r3, #0
- 800020e:	d006      	beq.n	800021e <DMA_Init+0x36>
-			{
-				RCC -> AHB1ENR |= RCC_AHB1LPENR_DMA1LPEN;
- 8000210:	4b79      	ldr	r3, [pc, #484]	; (80003f8 <DMA_Init+0x210>)
- 8000212:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000214:	4a78      	ldr	r2, [pc, #480]	; (80003f8 <DMA_Init+0x210>)
- 8000216:	f443 1300 	orr.w	r3, r3, #2097152	; 0x200000
- 800021a:	6313      	str	r3, [r2, #48]	; 0x30
- 800021c:	e005      	b.n	800022a <DMA_Init+0x42>
-			}else
-			{
-				RCC -> AHB1ENR |= RCC_AHB1ENR_DMA1EN;
- 800021e:	4b76      	ldr	r3, [pc, #472]	; (80003f8 <DMA_Init+0x210>)
- 8000220:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000222:	4a75      	ldr	r2, [pc, #468]	; (80003f8 <DMA_Init+0x210>)
- 8000224:	f443 1300 	orr.w	r3, r3, #2097152	; 0x200000
- 8000228:	6313      	str	r3, [r2, #48]	; 0x30
-			}
-
-			if(self->Stream_Typedef == DMA1_Stream0)
- 800022a:	687b      	ldr	r3, [r7, #4]
- 800022c:	689b      	ldr	r3, [r3, #8]
- 800022e:	4a73      	ldr	r2, [pc, #460]	; (80003fc <DMA_Init+0x214>)
- 8000230:	4293      	cmp	r3, r2
- 8000232:	d103      	bne.n	800023c <DMA_Init+0x54>
-			{
-				stream= 0;
- 8000234:	4b72      	ldr	r3, [pc, #456]	; (8000400 <DMA_Init+0x218>)
- 8000236:	2200      	movs	r2, #0
- 8000238:	601a      	str	r2, [r3, #0]
- 800023a:	e03d      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream1)
- 800023c:	687b      	ldr	r3, [r7, #4]
- 800023e:	689b      	ldr	r3, [r3, #8]
- 8000240:	4a70      	ldr	r2, [pc, #448]	; (8000404 <DMA_Init+0x21c>)
- 8000242:	4293      	cmp	r3, r2
- 8000244:	d103      	bne.n	800024e <DMA_Init+0x66>
-			{
-				stream= 1;
- 8000246:	4b6e      	ldr	r3, [pc, #440]	; (8000400 <DMA_Init+0x218>)
- 8000248:	2201      	movs	r2, #1
- 800024a:	601a      	str	r2, [r3, #0]
- 800024c:	e034      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream2)
- 800024e:	687b      	ldr	r3, [r7, #4]
- 8000250:	689b      	ldr	r3, [r3, #8]
- 8000252:	4a6d      	ldr	r2, [pc, #436]	; (8000408 <DMA_Init+0x220>)
- 8000254:	4293      	cmp	r3, r2
- 8000256:	d103      	bne.n	8000260 <DMA_Init+0x78>
-			{
-				stream= 2;
- 8000258:	4b69      	ldr	r3, [pc, #420]	; (8000400 <DMA_Init+0x218>)
- 800025a:	2202      	movs	r2, #2
- 800025c:	601a      	str	r2, [r3, #0]
- 800025e:	e02b      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream3)
- 8000260:	687b      	ldr	r3, [r7, #4]
- 8000262:	689b      	ldr	r3, [r3, #8]
- 8000264:	4a69      	ldr	r2, [pc, #420]	; (800040c <DMA_Init+0x224>)
- 8000266:	4293      	cmp	r3, r2
- 8000268:	d103      	bne.n	8000272 <DMA_Init+0x8a>
-			{
-				stream= 3;
- 800026a:	4b65      	ldr	r3, [pc, #404]	; (8000400 <DMA_Init+0x218>)
- 800026c:	2203      	movs	r2, #3
- 800026e:	601a      	str	r2, [r3, #0]
- 8000270:	e022      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream4)
- 8000272:	687b      	ldr	r3, [r7, #4]
- 8000274:	689b      	ldr	r3, [r3, #8]
- 8000276:	4a66      	ldr	r2, [pc, #408]	; (8000410 <DMA_Init+0x228>)
- 8000278:	4293      	cmp	r3, r2
- 800027a:	d103      	bne.n	8000284 <DMA_Init+0x9c>
-			{
-				stream= 4;
- 800027c:	4b60      	ldr	r3, [pc, #384]	; (8000400 <DMA_Init+0x218>)
- 800027e:	2204      	movs	r2, #4
- 8000280:	601a      	str	r2, [r3, #0]
- 8000282:	e019      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream5)
- 8000284:	687b      	ldr	r3, [r7, #4]
- 8000286:	689b      	ldr	r3, [r3, #8]
- 8000288:	4a62      	ldr	r2, [pc, #392]	; (8000414 <DMA_Init+0x22c>)
- 800028a:	4293      	cmp	r3, r2
- 800028c:	d103      	bne.n	8000296 <DMA_Init+0xae>
-			{
-				stream= 5;
- 800028e:	4b5c      	ldr	r3, [pc, #368]	; (8000400 <DMA_Init+0x218>)
- 8000290:	2205      	movs	r2, #5
- 8000292:	601a      	str	r2, [r3, #0]
- 8000294:	e010      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream6)
- 8000296:	687b      	ldr	r3, [r7, #4]
- 8000298:	689b      	ldr	r3, [r3, #8]
- 800029a:	4a5f      	ldr	r2, [pc, #380]	; (8000418 <DMA_Init+0x230>)
- 800029c:	4293      	cmp	r3, r2
- 800029e:	d103      	bne.n	80002a8 <DMA_Init+0xc0>
-			{
-				stream= 6;
- 80002a0:	4b57      	ldr	r3, [pc, #348]	; (8000400 <DMA_Init+0x218>)
- 80002a2:	2206      	movs	r2, #6
- 80002a4:	601a      	str	r2, [r3, #0]
- 80002a6:	e007      	b.n	80002b8 <DMA_Init+0xd0>
-			}else if(self->Stream_Typedef == DMA1_Stream7)
- 80002a8:	687b      	ldr	r3, [r7, #4]
- 80002aa:	689b      	ldr	r3, [r3, #8]
- 80002ac:	4a5b      	ldr	r2, [pc, #364]	; (800041c <DMA_Init+0x234>)
- 80002ae:	4293      	cmp	r3, r2
- 80002b0:	d102      	bne.n	80002b8 <DMA_Init+0xd0>
-			{
-				stream= 7;
- 80002b2:	4b53      	ldr	r3, [pc, #332]	; (8000400 <DMA_Init+0x218>)
- 80002b4:	2207      	movs	r2, #7
- 80002b6:	601a      	str	r2, [r3, #0]
-			}
-
-		}
-		if(self->Controller_Typedef == DMA2)
- 80002b8:	687b      	ldr	r3, [r7, #4]
- 80002ba:	681b      	ldr	r3, [r3, #0]
- 80002bc:	4a58      	ldr	r2, [pc, #352]	; (8000420 <DMA_Init+0x238>)
- 80002be:	4293      	cmp	r3, r2
- 80002c0:	d15a      	bne.n	8000378 <DMA_Init+0x190>
-		{
-			controller= 2;
- 80002c2:	4b4c      	ldr	r3, [pc, #304]	; (80003f4 <DMA_Init+0x20c>)
- 80002c4:	2202      	movs	r2, #2
- 80002c6:	601a      	str	r2, [r3, #0]
-			/*
-			 *	Low Power mode is selected only when needed otherwise normal DMA is used
-			 */
-			if(self->Low_Power_Mode == DMA_Lowe_Power_Mode_Enable)
- 80002c8:	687b      	ldr	r3, [r7, #4]
- 80002ca:	791b      	ldrb	r3, [r3, #4]
- 80002cc:	2b00      	cmp	r3, #0
- 80002ce:	d006      	beq.n	80002de <DMA_Init+0xf6>
-			{
-				RCC -> AHB1ENR |= RCC_AHB1LPENR_DMA2LPEN;
- 80002d0:	4b49      	ldr	r3, [pc, #292]	; (80003f8 <DMA_Init+0x210>)
- 80002d2:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002d4:	4a48      	ldr	r2, [pc, #288]	; (80003f8 <DMA_Init+0x210>)
- 80002d6:	f443 0380 	orr.w	r3, r3, #4194304	; 0x400000
- 80002da:	6313      	str	r3, [r2, #48]	; 0x30
- 80002dc:	e005      	b.n	80002ea <DMA_Init+0x102>
-			}else
-			{
-				RCC -> AHB1ENR |= RCC_AHB1ENR_DMA2EN;
- 80002de:	4b46      	ldr	r3, [pc, #280]	; (80003f8 <DMA_Init+0x210>)
- 80002e0:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002e2:	4a45      	ldr	r2, [pc, #276]	; (80003f8 <DMA_Init+0x210>)
- 80002e4:	f443 0380 	orr.w	r3, r3, #4194304	; 0x400000
- 80002e8:	6313      	str	r3, [r2, #48]	; 0x30
-			}
-			if(self->Stream_Typedef == DMA1_Stream0)
- 80002ea:	687b      	ldr	r3, [r7, #4]
- 80002ec:	689b      	ldr	r3, [r3, #8]
- 80002ee:	4a43      	ldr	r2, [pc, #268]	; (80003fc <DMA_Init+0x214>)
- 80002f0:	4293      	cmp	r3, r2
- 80002f2:	d103      	bne.n	80002fc <DMA_Init+0x114>
-			{
-				stream= 0;
- 80002f4:	4b42      	ldr	r3, [pc, #264]	; (8000400 <DMA_Init+0x218>)
- 80002f6:	2200      	movs	r2, #0
- 80002f8:	601a      	str	r2, [r3, #0]
- 80002fa:	e03d      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream1)
- 80002fc:	687b      	ldr	r3, [r7, #4]
- 80002fe:	689b      	ldr	r3, [r3, #8]
- 8000300:	4a48      	ldr	r2, [pc, #288]	; (8000424 <DMA_Init+0x23c>)
- 8000302:	4293      	cmp	r3, r2
- 8000304:	d103      	bne.n	800030e <DMA_Init+0x126>
-			{
-				stream= 1;
- 8000306:	4b3e      	ldr	r3, [pc, #248]	; (8000400 <DMA_Init+0x218>)
- 8000308:	2201      	movs	r2, #1
- 800030a:	601a      	str	r2, [r3, #0]
- 800030c:	e034      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream2)
- 800030e:	687b      	ldr	r3, [r7, #4]
- 8000310:	689b      	ldr	r3, [r3, #8]
- 8000312:	4a45      	ldr	r2, [pc, #276]	; (8000428 <DMA_Init+0x240>)
- 8000314:	4293      	cmp	r3, r2
- 8000316:	d103      	bne.n	8000320 <DMA_Init+0x138>
-			{
-				stream= 2;
- 8000318:	4b39      	ldr	r3, [pc, #228]	; (8000400 <DMA_Init+0x218>)
- 800031a:	2202      	movs	r2, #2
- 800031c:	601a      	str	r2, [r3, #0]
- 800031e:	e02b      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream3)
- 8000320:	687b      	ldr	r3, [r7, #4]
- 8000322:	689b      	ldr	r3, [r3, #8]
- 8000324:	4a41      	ldr	r2, [pc, #260]	; (800042c <DMA_Init+0x244>)
- 8000326:	4293      	cmp	r3, r2
- 8000328:	d103      	bne.n	8000332 <DMA_Init+0x14a>
-			{
-				stream= 3;
- 800032a:	4b35      	ldr	r3, [pc, #212]	; (8000400 <DMA_Init+0x218>)
- 800032c:	2203      	movs	r2, #3
- 800032e:	601a      	str	r2, [r3, #0]
- 8000330:	e022      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream4)
- 8000332:	687b      	ldr	r3, [r7, #4]
- 8000334:	689b      	ldr	r3, [r3, #8]
- 8000336:	4a3e      	ldr	r2, [pc, #248]	; (8000430 <DMA_Init+0x248>)
- 8000338:	4293      	cmp	r3, r2
- 800033a:	d103      	bne.n	8000344 <DMA_Init+0x15c>
-			{
-				stream= 4;
- 800033c:	4b30      	ldr	r3, [pc, #192]	; (8000400 <DMA_Init+0x218>)
- 800033e:	2204      	movs	r2, #4
- 8000340:	601a      	str	r2, [r3, #0]
- 8000342:	e019      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream5)
- 8000344:	687b      	ldr	r3, [r7, #4]
- 8000346:	689b      	ldr	r3, [r3, #8]
- 8000348:	4a3a      	ldr	r2, [pc, #232]	; (8000434 <DMA_Init+0x24c>)
- 800034a:	4293      	cmp	r3, r2
- 800034c:	d103      	bne.n	8000356 <DMA_Init+0x16e>
-			{
-				stream= 5;
- 800034e:	4b2c      	ldr	r3, [pc, #176]	; (8000400 <DMA_Init+0x218>)
- 8000350:	2205      	movs	r2, #5
- 8000352:	601a      	str	r2, [r3, #0]
- 8000354:	e010      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream6)
- 8000356:	687b      	ldr	r3, [r7, #4]
- 8000358:	689b      	ldr	r3, [r3, #8]
- 800035a:	4a37      	ldr	r2, [pc, #220]	; (8000438 <DMA_Init+0x250>)
- 800035c:	4293      	cmp	r3, r2
- 800035e:	d103      	bne.n	8000368 <DMA_Init+0x180>
-			{
-				stream= 6;
- 8000360:	4b27      	ldr	r3, [pc, #156]	; (8000400 <DMA_Init+0x218>)
- 8000362:	2206      	movs	r2, #6
- 8000364:	601a      	str	r2, [r3, #0]
- 8000366:	e007      	b.n	8000378 <DMA_Init+0x190>
-			}else if(self->Stream_Typedef == DMA2_Stream7)
- 8000368:	687b      	ldr	r3, [r7, #4]
- 800036a:	689b      	ldr	r3, [r3, #8]
- 800036c:	4a33      	ldr	r2, [pc, #204]	; (800043c <DMA_Init+0x254>)
- 800036e:	4293      	cmp	r3, r2
- 8000370:	d102      	bne.n	8000378 <DMA_Init+0x190>
-			{
-				stream = 7;
- 8000372:	4b23      	ldr	r3, [pc, #140]	; (8000400 <DMA_Init+0x218>)
- 8000374:	2207      	movs	r2, #7
- 8000376:	601a      	str	r2, [r3, #0]
-			}
-		}
-
-		self ->	Stream_Typedef -> CR |= (self -> Channel			<< DMA_SxCR_CHSEL_Pos);		//Select Channel
- 8000378:	687b      	ldr	r3, [r7, #4]
- 800037a:	689b      	ldr	r3, [r3, #8]
- 800037c:	681a      	ldr	r2, [r3, #0]
- 800037e:	687b      	ldr	r3, [r7, #4]
- 8000380:	7b1b      	ldrb	r3, [r3, #12]
- 8000382:	065b      	lsls	r3, r3, #25
- 8000384:	4619      	mov	r1, r3
- 8000386:	687b      	ldr	r3, [r7, #4]
- 8000388:	689b      	ldr	r3, [r3, #8]
- 800038a:	430a      	orrs	r2, r1
- 800038c:	601a      	str	r2, [r3, #0]
-		self ->	Stream_Typedef -> CR |= (self -> Priority_Level		<< DMA_SxCR_PL_Pos);	    //Select Priority Level
- 800038e:	687b      	ldr	r3, [r7, #4]
- 8000390:	689b      	ldr	r3, [r3, #8]
- 8000392:	681a      	ldr	r2, [r3, #0]
- 8000394:	687b      	ldr	r3, [r7, #4]
- 8000396:	7b5b      	ldrb	r3, [r3, #13]
- 8000398:	041b      	lsls	r3, r3, #16
- 800039a:	4619      	mov	r1, r3
- 800039c:	687b      	ldr	r3, [r7, #4]
- 800039e:	689b      	ldr	r3, [r3, #8]
- 80003a0:	430a      	orrs	r2, r1
- 80003a2:	601a      	str	r2, [r3, #0]
-		self ->	Stream_Typedef -> CR |= (self -> Memory_Size		<< DMA_SxCR_MSIZE_Pos);	    //Select Memory Size
- 80003a4:	687b      	ldr	r3, [r7, #4]
- 80003a6:	689b      	ldr	r3, [r3, #8]
- 80003a8:	681a      	ldr	r2, [r3, #0]
- 80003aa:	687b      	ldr	r3, [r7, #4]
- 80003ac:	7b9b      	ldrb	r3, [r3, #14]
- 80003ae:	035b      	lsls	r3, r3, #13
- 80003b0:	4619      	mov	r1, r3
- 80003b2:	687b      	ldr	r3, [r7, #4]
- 80003b4:	689b      	ldr	r3, [r3, #8]
- 80003b6:	430a      	orrs	r2, r1
- 80003b8:	601a      	str	r2, [r3, #0]
-		self ->	Stream_Typedef -> CR |= (self -> Peripheral_Size	<< DMA_SxCR_PSIZE_Pos);	    //Select Peripheral Size
- 80003ba:	687b      	ldr	r3, [r7, #4]
- 80003bc:	689b      	ldr	r3, [r3, #8]
- 80003be:	681a      	ldr	r2, [r3, #0]
- 80003c0:	687b      	ldr	r3, [r7, #4]
- 80003c2:	7bdb      	ldrb	r3, [r3, #15]
- 80003c4:	02db      	lsls	r3, r3, #11
- 80003c6:	4619      	mov	r1, r3
- 80003c8:	687b      	ldr	r3, [r7, #4]
- 80003ca:	689b      	ldr	r3, [r3, #8]
- 80003cc:	430a      	orrs	r2, r1
- 80003ce:	601a      	str	r2, [r3, #0]
-
-		if(self	->	Circular_Mode == DMA_Circular_Mode_Enable)
- 80003d0:	687b      	ldr	r3, [r7, #4]
- 80003d2:	7c9b      	ldrb	r3, [r3, #18]
- 80003d4:	2b00      	cmp	r3, #0
- 80003d6:	d033      	beq.n	8000440 <DMA_Init+0x258>
-		{
-			self ->	Stream_Typedef -> CR |= (self -> Circular_Mode	<<	DMA_SxCR_CIRC_Pos);	    //Enable circular mode
- 80003d8:	687b      	ldr	r3, [r7, #4]
- 80003da:	689b      	ldr	r3, [r3, #8]
- 80003dc:	681a      	ldr	r2, [r3, #0]
- 80003de:	687b      	ldr	r3, [r7, #4]
- 80003e0:	7c9b      	ldrb	r3, [r3, #18]
- 80003e2:	021b      	lsls	r3, r3, #8
- 80003e4:	4619      	mov	r1, r3
- 80003e6:	687b      	ldr	r3, [r7, #4]
- 80003e8:	689b      	ldr	r3, [r3, #8]
- 80003ea:	430a      	orrs	r2, r1
- 80003ec:	601a      	str	r2, [r3, #0]
- 80003ee:	e033      	b.n	8000458 <DMA_Init+0x270>
- 80003f0:	40026000 	.word	0x40026000
- 80003f4:	20000020 	.word	0x20000020
- 80003f8:	40023800 	.word	0x40023800
- 80003fc:	40026010 	.word	0x40026010
- 8000400:	2000001c 	.word	0x2000001c
- 8000404:	40026028 	.word	0x40026028
- 8000408:	40026040 	.word	0x40026040
- 800040c:	40026058 	.word	0x40026058
- 8000410:	40026070 	.word	0x40026070
- 8000414:	40026088 	.word	0x40026088
- 8000418:	400260a0 	.word	0x400260a0
- 800041c:	400260b8 	.word	0x400260b8
- 8000420:	40026400 	.word	0x40026400
- 8000424:	40026428 	.word	0x40026428
- 8000428:	40026440 	.word	0x40026440
- 800042c:	40026458 	.word	0x40026458
- 8000430:	40026470 	.word	0x40026470
- 8000434:	40026488 	.word	0x40026488
- 8000438:	400264a0 	.word	0x400264a0
- 800043c:	400264b8 	.word	0x400264b8
-		}
-		else
-		{
-			self -> Stream_Typedef -> CR &= ~(self -> Circular_Mode	<<	DMA_SxCR_CIRC_Pos);	    //Disable circular mode
- 8000440:	687b      	ldr	r3, [r7, #4]
- 8000442:	689b      	ldr	r3, [r3, #8]
- 8000444:	681a      	ldr	r2, [r3, #0]
- 8000446:	687b      	ldr	r3, [r7, #4]
- 8000448:	7c9b      	ldrb	r3, [r3, #18]
- 800044a:	021b      	lsls	r3, r3, #8
- 800044c:	43db      	mvns	r3, r3
- 800044e:	4619      	mov	r1, r3
- 8000450:	687b      	ldr	r3, [r7, #4]
- 8000452:	689b      	ldr	r3, [r3, #8]
- 8000454:	400a      	ands	r2, r1
- 8000456:	601a      	str	r2, [r3, #0]
-		}
-		self -> Stream_Typedef -> CR |= (self -> Direction << DMA_SxCR_DIR_Pos);				//Direction of Data
- 8000458:	687b      	ldr	r3, [r7, #4]
- 800045a:	689b      	ldr	r3, [r3, #8]
- 800045c:	681a      	ldr	r2, [r3, #0]
- 800045e:	687b      	ldr	r3, [r7, #4]
- 8000460:	7cdb      	ldrb	r3, [r3, #19]
- 8000462:	019b      	lsls	r3, r3, #6
- 8000464:	4619      	mov	r1, r3
- 8000466:	687b      	ldr	r3, [r7, #4]
- 8000468:	689b      	ldr	r3, [r3, #8]
- 800046a:	430a      	orrs	r2, r1
- 800046c:	601a      	str	r2, [r3, #0]
-		self -> Stream_Typedef -> CR |= (self -> Flow_Control << DMA_SxCR_PFCTRL_Pos);			// Flow Control
- 800046e:	687b      	ldr	r3, [r7, #4]
- 8000470:	689b      	ldr	r3, [r3, #8]
- 8000472:	681a      	ldr	r2, [r3, #0]
- 8000474:	687b      	ldr	r3, [r7, #4]
- 8000476:	7d1b      	ldrb	r3, [r3, #20]
- 8000478:	015b      	lsls	r3, r3, #5
- 800047a:	4619      	mov	r1, r3
- 800047c:	687b      	ldr	r3, [r7, #4]
- 800047e:	689b      	ldr	r3, [r3, #8]
- 8000480:	430a      	orrs	r2, r1
- 8000482:	601a      	str	r2, [r3, #0]
-	}
-
-
+ 80001ee:	4603      	mov	r3, r0
+ 80001f0:	6039      	str	r1, [r7, #0]
+ 80001f2:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 80001f4:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 80001f8:	2b00      	cmp	r3, #0
+ 80001fa:	db0a      	blt.n	8000212 <__NVIC_SetPriority+0x2a>
+  {
+    NVIC->IP[((uint32_t)IRQn)]               = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 80001fc:	683b      	ldr	r3, [r7, #0]
+ 80001fe:	b2da      	uxtb	r2, r3
+ 8000200:	490c      	ldr	r1, [pc, #48]	; (8000234 <__NVIC_SetPriority+0x4c>)
+ 8000202:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000206:	0112      	lsls	r2, r2, #4
+ 8000208:	b2d2      	uxtb	r2, r2
+ 800020a:	440b      	add	r3, r1
+ 800020c:	f883 2300 	strb.w	r2, [r3, #768]	; 0x300
+  }
+  else
+  {
+    SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+  }
 }
- 8000484:	bf00      	nop
- 8000486:	370c      	adds	r7, #12
- 8000488:	46bd      	mov	sp, r7
- 800048a:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800048e:	4770      	bx	lr
+ 8000210:	e00a      	b.n	8000228 <__NVIC_SetPriority+0x40>
+    SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 8000212:	683b      	ldr	r3, [r7, #0]
+ 8000214:	b2da      	uxtb	r2, r3
+ 8000216:	4908      	ldr	r1, [pc, #32]	; (8000238 <__NVIC_SetPriority+0x50>)
+ 8000218:	79fb      	ldrb	r3, [r7, #7]
+ 800021a:	f003 030f 	and.w	r3, r3, #15
+ 800021e:	3b04      	subs	r3, #4
+ 8000220:	0112      	lsls	r2, r2, #4
+ 8000222:	b2d2      	uxtb	r2, r2
+ 8000224:	440b      	add	r3, r1
+ 8000226:	761a      	strb	r2, [r3, #24]
+}
+ 8000228:	bf00      	nop
+ 800022a:	370c      	adds	r7, #12
+ 800022c:	46bd      	mov	sp, r7
+ 800022e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000232:	4770      	bx	lr
+ 8000234:	e000e100 	.word	0xe000e100
+ 8000238:	e000ed00 	.word	0xe000ed00
 
-08000490 <DMA_Interrupt_Init>:
- *
+0800023c <SysTick_Config>:
+  \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
+           function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
+           must contain a vendor-specific implementation of this function.
  */
-
-
-void DMA_Interrupt_Init(DMA_Config *self)
+__STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
 {
- 8000490:	b480      	push	{r7}
- 8000492:	b083      	sub	sp, #12
- 8000494:	af00      	add	r7, sp, #0
- 8000496:	6078      	str	r0, [r7, #4]
-	self -> Stream_Typedef -> CR |=  self->Interrupt;
- 8000498:	687b      	ldr	r3, [r7, #4]
- 800049a:	689b      	ldr	r3, [r3, #8]
- 800049c:	681a      	ldr	r2, [r3, #0]
- 800049e:	687b      	ldr	r3, [r7, #4]
- 80004a0:	7d5b      	ldrb	r3, [r3, #21]
- 80004a2:	4619      	mov	r1, r3
- 80004a4:	687b      	ldr	r3, [r7, #4]
- 80004a6:	689b      	ldr	r3, [r3, #8]
- 80004a8:	430a      	orrs	r2, r1
- 80004aa:	601a      	str	r2, [r3, #0]
-	if(self -> Interrupt & DMA_Interrupt_Direct_Mode_Error)
- 80004ac:	687b      	ldr	r3, [r7, #4]
- 80004ae:	7d5b      	ldrb	r3, [r3, #21]
- 80004b0:	f003 0302 	and.w	r3, r3, #2
- 80004b4:	2b00      	cmp	r3, #0
- 80004b6:	f000 80a0 	beq.w	80005fa <DMA_Interrupt_Init+0x16a>
-	{
-		if(stream == 0)
- 80004ba:	4b88      	ldr	r3, [pc, #544]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80004bc:	681b      	ldr	r3, [r3, #0]
- 80004be:	2b00      	cmp	r3, #0
- 80004c0:	d10f      	bne.n	80004e2 <DMA_Interrupt_Init+0x52>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 2);
- 80004c2:	687b      	ldr	r3, [r7, #4]
- 80004c4:	681b      	ldr	r3, [r3, #0]
- 80004c6:	689a      	ldr	r2, [r3, #8]
- 80004c8:	687b      	ldr	r3, [r7, #4]
- 80004ca:	681b      	ldr	r3, [r3, #0]
- 80004cc:	f042 0204 	orr.w	r2, r2, #4
- 80004d0:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 2);
- 80004d2:	687b      	ldr	r3, [r7, #4]
- 80004d4:	681b      	ldr	r3, [r3, #0]
- 80004d6:	681a      	ldr	r2, [r3, #0]
- 80004d8:	687b      	ldr	r3, [r7, #4]
- 80004da:	681b      	ldr	r3, [r3, #0]
- 80004dc:	f022 0204 	bic.w	r2, r2, #4
- 80004e0:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 1)
- 80004e2:	4b7e      	ldr	r3, [pc, #504]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80004e4:	681b      	ldr	r3, [r3, #0]
- 80004e6:	2b01      	cmp	r3, #1
- 80004e8:	d10f      	bne.n	800050a <DMA_Interrupt_Init+0x7a>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 8);
- 80004ea:	687b      	ldr	r3, [r7, #4]
- 80004ec:	681b      	ldr	r3, [r3, #0]
- 80004ee:	689a      	ldr	r2, [r3, #8]
- 80004f0:	687b      	ldr	r3, [r7, #4]
- 80004f2:	681b      	ldr	r3, [r3, #0]
- 80004f4:	f442 7280 	orr.w	r2, r2, #256	; 0x100
- 80004f8:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 8);
- 80004fa:	687b      	ldr	r3, [r7, #4]
- 80004fc:	681b      	ldr	r3, [r3, #0]
- 80004fe:	681a      	ldr	r2, [r3, #0]
- 8000500:	687b      	ldr	r3, [r7, #4]
- 8000502:	681b      	ldr	r3, [r3, #0]
- 8000504:	f422 7280 	bic.w	r2, r2, #256	; 0x100
- 8000508:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 2)
- 800050a:	4b74      	ldr	r3, [pc, #464]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 800050c:	681b      	ldr	r3, [r3, #0]
- 800050e:	2b02      	cmp	r3, #2
- 8000510:	d10f      	bne.n	8000532 <DMA_Interrupt_Init+0xa2>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 18);
- 8000512:	687b      	ldr	r3, [r7, #4]
- 8000514:	681b      	ldr	r3, [r3, #0]
- 8000516:	689a      	ldr	r2, [r3, #8]
- 8000518:	687b      	ldr	r3, [r7, #4]
- 800051a:	681b      	ldr	r3, [r3, #0]
- 800051c:	f442 2280 	orr.w	r2, r2, #262144	; 0x40000
- 8000520:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 18);
- 8000522:	687b      	ldr	r3, [r7, #4]
- 8000524:	681b      	ldr	r3, [r3, #0]
- 8000526:	681a      	ldr	r2, [r3, #0]
- 8000528:	687b      	ldr	r3, [r7, #4]
- 800052a:	681b      	ldr	r3, [r3, #0]
- 800052c:	f422 2280 	bic.w	r2, r2, #262144	; 0x40000
- 8000530:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 3)
- 8000532:	4b6a      	ldr	r3, [pc, #424]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 8000534:	681b      	ldr	r3, [r3, #0]
- 8000536:	2b03      	cmp	r3, #3
- 8000538:	d10f      	bne.n	800055a <DMA_Interrupt_Init+0xca>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 24);
- 800053a:	687b      	ldr	r3, [r7, #4]
- 800053c:	681b      	ldr	r3, [r3, #0]
- 800053e:	689a      	ldr	r2, [r3, #8]
- 8000540:	687b      	ldr	r3, [r7, #4]
- 8000542:	681b      	ldr	r3, [r3, #0]
- 8000544:	f042 7280 	orr.w	r2, r2, #16777216	; 0x1000000
- 8000548:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 24);
- 800054a:	687b      	ldr	r3, [r7, #4]
- 800054c:	681b      	ldr	r3, [r3, #0]
- 800054e:	681a      	ldr	r2, [r3, #0]
- 8000550:	687b      	ldr	r3, [r7, #4]
- 8000552:	681b      	ldr	r3, [r3, #0]
- 8000554:	f022 7280 	bic.w	r2, r2, #16777216	; 0x1000000
- 8000558:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 4)
- 800055a:	4b60      	ldr	r3, [pc, #384]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 800055c:	681b      	ldr	r3, [r3, #0]
- 800055e:	2b04      	cmp	r3, #4
- 8000560:	d10f      	bne.n	8000582 <DMA_Interrupt_Init+0xf2>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 2);
- 8000562:	687b      	ldr	r3, [r7, #4]
- 8000564:	681b      	ldr	r3, [r3, #0]
- 8000566:	68da      	ldr	r2, [r3, #12]
- 8000568:	687b      	ldr	r3, [r7, #4]
- 800056a:	681b      	ldr	r3, [r3, #0]
- 800056c:	f042 0204 	orr.w	r2, r2, #4
- 8000570:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 2);
- 8000572:	687b      	ldr	r3, [r7, #4]
- 8000574:	681b      	ldr	r3, [r3, #0]
- 8000576:	685a      	ldr	r2, [r3, #4]
- 8000578:	687b      	ldr	r3, [r7, #4]
- 800057a:	681b      	ldr	r3, [r3, #0]
- 800057c:	f022 0204 	bic.w	r2, r2, #4
- 8000580:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 5)
- 8000582:	4b56      	ldr	r3, [pc, #344]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 8000584:	681b      	ldr	r3, [r3, #0]
- 8000586:	2b05      	cmp	r3, #5
- 8000588:	d10f      	bne.n	80005aa <DMA_Interrupt_Init+0x11a>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 8);
- 800058a:	687b      	ldr	r3, [r7, #4]
- 800058c:	681b      	ldr	r3, [r3, #0]
- 800058e:	68da      	ldr	r2, [r3, #12]
- 8000590:	687b      	ldr	r3, [r7, #4]
- 8000592:	681b      	ldr	r3, [r3, #0]
- 8000594:	f442 7280 	orr.w	r2, r2, #256	; 0x100
- 8000598:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 8);
- 800059a:	687b      	ldr	r3, [r7, #4]
- 800059c:	681b      	ldr	r3, [r3, #0]
- 800059e:	685a      	ldr	r2, [r3, #4]
- 80005a0:	687b      	ldr	r3, [r7, #4]
- 80005a2:	681b      	ldr	r3, [r3, #0]
- 80005a4:	f422 7280 	bic.w	r2, r2, #256	; 0x100
- 80005a8:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 6)
- 80005aa:	4b4c      	ldr	r3, [pc, #304]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80005ac:	681b      	ldr	r3, [r3, #0]
- 80005ae:	2b06      	cmp	r3, #6
- 80005b0:	d10f      	bne.n	80005d2 <DMA_Interrupt_Init+0x142>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 18);
- 80005b2:	687b      	ldr	r3, [r7, #4]
- 80005b4:	681b      	ldr	r3, [r3, #0]
- 80005b6:	68da      	ldr	r2, [r3, #12]
- 80005b8:	687b      	ldr	r3, [r7, #4]
- 80005ba:	681b      	ldr	r3, [r3, #0]
- 80005bc:	f442 2280 	orr.w	r2, r2, #262144	; 0x40000
- 80005c0:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 18);
- 80005c2:	687b      	ldr	r3, [r7, #4]
- 80005c4:	681b      	ldr	r3, [r3, #0]
- 80005c6:	685a      	ldr	r2, [r3, #4]
- 80005c8:	687b      	ldr	r3, [r7, #4]
- 80005ca:	681b      	ldr	r3, [r3, #0]
- 80005cc:	f422 2280 	bic.w	r2, r2, #262144	; 0x40000
- 80005d0:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 7)
- 80005d2:	4b42      	ldr	r3, [pc, #264]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80005d4:	681b      	ldr	r3, [r3, #0]
- 80005d6:	2b07      	cmp	r3, #7
- 80005d8:	d10f      	bne.n	80005fa <DMA_Interrupt_Init+0x16a>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 24);
- 80005da:	687b      	ldr	r3, [r7, #4]
- 80005dc:	681b      	ldr	r3, [r3, #0]
- 80005de:	68da      	ldr	r2, [r3, #12]
- 80005e0:	687b      	ldr	r3, [r7, #4]
- 80005e2:	681b      	ldr	r3, [r3, #0]
- 80005e4:	f042 7280 	orr.w	r2, r2, #16777216	; 0x1000000
- 80005e8:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 24);
- 80005ea:	687b      	ldr	r3, [r7, #4]
- 80005ec:	681b      	ldr	r3, [r3, #0]
- 80005ee:	685a      	ldr	r2, [r3, #4]
- 80005f0:	687b      	ldr	r3, [r7, #4]
- 80005f2:	681b      	ldr	r3, [r3, #0]
- 80005f4:	f022 7280 	bic.w	r2, r2, #16777216	; 0x1000000
- 80005f8:	605a      	str	r2, [r3, #4]
-		}
-	}
+ 800023c:	b580      	push	{r7, lr}
+ 800023e:	b082      	sub	sp, #8
+ 8000240:	af00      	add	r7, sp, #0
+ 8000242:	6078      	str	r0, [r7, #4]
+  if ((ticks - 1UL) > SysTick_LOAD_RELOAD_Msk)
+ 8000244:	687b      	ldr	r3, [r7, #4]
+ 8000246:	3b01      	subs	r3, #1
+ 8000248:	f1b3 7f80 	cmp.w	r3, #16777216	; 0x1000000
+ 800024c:	d301      	bcc.n	8000252 <SysTick_Config+0x16>
+  {
+    return (1UL);                                                   /* Reload value impossible */
+ 800024e:	2301      	movs	r3, #1
+ 8000250:	e00f      	b.n	8000272 <SysTick_Config+0x36>
+  }
 
-	if(self -> Interrupt & DMA_Interrupt_Transfer_Error)
- 80005fa:	687b      	ldr	r3, [r7, #4]
- 80005fc:	7d5b      	ldrb	r3, [r3, #21]
- 80005fe:	f003 0304 	and.w	r3, r3, #4
- 8000602:	2b00      	cmp	r3, #0
- 8000604:	f000 80a4 	beq.w	8000750 <DMA_Interrupt_Init+0x2c0>
-	{
-		if(stream == 0)
- 8000608:	4b34      	ldr	r3, [pc, #208]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 800060a:	681b      	ldr	r3, [r3, #0]
- 800060c:	2b00      	cmp	r3, #0
- 800060e:	d10f      	bne.n	8000630 <DMA_Interrupt_Init+0x1a0>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 3);
- 8000610:	687b      	ldr	r3, [r7, #4]
- 8000612:	681b      	ldr	r3, [r3, #0]
- 8000614:	689a      	ldr	r2, [r3, #8]
- 8000616:	687b      	ldr	r3, [r7, #4]
- 8000618:	681b      	ldr	r3, [r3, #0]
- 800061a:	f042 0208 	orr.w	r2, r2, #8
- 800061e:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 3);
- 8000620:	687b      	ldr	r3, [r7, #4]
- 8000622:	681b      	ldr	r3, [r3, #0]
- 8000624:	681a      	ldr	r2, [r3, #0]
- 8000626:	687b      	ldr	r3, [r7, #4]
- 8000628:	681b      	ldr	r3, [r3, #0]
- 800062a:	f022 0208 	bic.w	r2, r2, #8
- 800062e:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 1)
- 8000630:	4b2a      	ldr	r3, [pc, #168]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 8000632:	681b      	ldr	r3, [r3, #0]
- 8000634:	2b01      	cmp	r3, #1
- 8000636:	d10f      	bne.n	8000658 <DMA_Interrupt_Init+0x1c8>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 9);
- 8000638:	687b      	ldr	r3, [r7, #4]
- 800063a:	681b      	ldr	r3, [r3, #0]
- 800063c:	689a      	ldr	r2, [r3, #8]
- 800063e:	687b      	ldr	r3, [r7, #4]
- 8000640:	681b      	ldr	r3, [r3, #0]
- 8000642:	f442 7200 	orr.w	r2, r2, #512	; 0x200
- 8000646:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 9);
- 8000648:	687b      	ldr	r3, [r7, #4]
- 800064a:	681b      	ldr	r3, [r3, #0]
- 800064c:	681a      	ldr	r2, [r3, #0]
- 800064e:	687b      	ldr	r3, [r7, #4]
- 8000650:	681b      	ldr	r3, [r3, #0]
- 8000652:	f422 7200 	bic.w	r2, r2, #512	; 0x200
- 8000656:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 2)
- 8000658:	4b20      	ldr	r3, [pc, #128]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 800065a:	681b      	ldr	r3, [r3, #0]
- 800065c:	2b02      	cmp	r3, #2
- 800065e:	d10f      	bne.n	8000680 <DMA_Interrupt_Init+0x1f0>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 19);
- 8000660:	687b      	ldr	r3, [r7, #4]
- 8000662:	681b      	ldr	r3, [r3, #0]
- 8000664:	689a      	ldr	r2, [r3, #8]
- 8000666:	687b      	ldr	r3, [r7, #4]
- 8000668:	681b      	ldr	r3, [r3, #0]
- 800066a:	f442 2200 	orr.w	r2, r2, #524288	; 0x80000
- 800066e:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 19);
- 8000670:	687b      	ldr	r3, [r7, #4]
- 8000672:	681b      	ldr	r3, [r3, #0]
- 8000674:	681a      	ldr	r2, [r3, #0]
- 8000676:	687b      	ldr	r3, [r7, #4]
- 8000678:	681b      	ldr	r3, [r3, #0]
- 800067a:	f422 2200 	bic.w	r2, r2, #524288	; 0x80000
- 800067e:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 3)
- 8000680:	4b16      	ldr	r3, [pc, #88]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 8000682:	681b      	ldr	r3, [r3, #0]
- 8000684:	2b03      	cmp	r3, #3
- 8000686:	d10f      	bne.n	80006a8 <DMA_Interrupt_Init+0x218>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 25);
- 8000688:	687b      	ldr	r3, [r7, #4]
- 800068a:	681b      	ldr	r3, [r3, #0]
- 800068c:	689a      	ldr	r2, [r3, #8]
- 800068e:	687b      	ldr	r3, [r7, #4]
- 8000690:	681b      	ldr	r3, [r3, #0]
- 8000692:	f042 7200 	orr.w	r2, r2, #33554432	; 0x2000000
- 8000696:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 25);
- 8000698:	687b      	ldr	r3, [r7, #4]
- 800069a:	681b      	ldr	r3, [r3, #0]
- 800069c:	681a      	ldr	r2, [r3, #0]
- 800069e:	687b      	ldr	r3, [r7, #4]
- 80006a0:	681b      	ldr	r3, [r3, #0]
- 80006a2:	f022 7200 	bic.w	r2, r2, #33554432	; 0x2000000
- 80006a6:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 4)
- 80006a8:	4b0c      	ldr	r3, [pc, #48]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80006aa:	681b      	ldr	r3, [r3, #0]
- 80006ac:	2b04      	cmp	r3, #4
- 80006ae:	d10f      	bne.n	80006d0 <DMA_Interrupt_Init+0x240>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 3);
- 80006b0:	687b      	ldr	r3, [r7, #4]
- 80006b2:	681b      	ldr	r3, [r3, #0]
- 80006b4:	68da      	ldr	r2, [r3, #12]
- 80006b6:	687b      	ldr	r3, [r7, #4]
- 80006b8:	681b      	ldr	r3, [r3, #0]
- 80006ba:	f042 0208 	orr.w	r2, r2, #8
- 80006be:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 3);
- 80006c0:	687b      	ldr	r3, [r7, #4]
- 80006c2:	681b      	ldr	r3, [r3, #0]
- 80006c4:	685a      	ldr	r2, [r3, #4]
- 80006c6:	687b      	ldr	r3, [r7, #4]
- 80006c8:	681b      	ldr	r3, [r3, #0]
- 80006ca:	f022 0208 	bic.w	r2, r2, #8
- 80006ce:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 5)
- 80006d0:	4b02      	ldr	r3, [pc, #8]	; (80006dc <DMA_Interrupt_Init+0x24c>)
- 80006d2:	681b      	ldr	r3, [r3, #0]
- 80006d4:	2b05      	cmp	r3, #5
- 80006d6:	d113      	bne.n	8000700 <DMA_Interrupt_Init+0x270>
- 80006d8:	e002      	b.n	80006e0 <DMA_Interrupt_Init+0x250>
- 80006da:	bf00      	nop
- 80006dc:	2000001c 	.word	0x2000001c
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 9);
- 80006e0:	687b      	ldr	r3, [r7, #4]
- 80006e2:	681b      	ldr	r3, [r3, #0]
- 80006e4:	68da      	ldr	r2, [r3, #12]
- 80006e6:	687b      	ldr	r3, [r7, #4]
- 80006e8:	681b      	ldr	r3, [r3, #0]
- 80006ea:	f442 7200 	orr.w	r2, r2, #512	; 0x200
- 80006ee:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 9);
- 80006f0:	687b      	ldr	r3, [r7, #4]
- 80006f2:	681b      	ldr	r3, [r3, #0]
- 80006f4:	685a      	ldr	r2, [r3, #4]
- 80006f6:	687b      	ldr	r3, [r7, #4]
- 80006f8:	681b      	ldr	r3, [r3, #0]
- 80006fa:	f422 7200 	bic.w	r2, r2, #512	; 0x200
- 80006fe:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 6)
- 8000700:	4b8b      	ldr	r3, [pc, #556]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000702:	681b      	ldr	r3, [r3, #0]
- 8000704:	2b06      	cmp	r3, #6
- 8000706:	d10f      	bne.n	8000728 <DMA_Interrupt_Init+0x298>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 19);
- 8000708:	687b      	ldr	r3, [r7, #4]
- 800070a:	681b      	ldr	r3, [r3, #0]
- 800070c:	68da      	ldr	r2, [r3, #12]
- 800070e:	687b      	ldr	r3, [r7, #4]
- 8000710:	681b      	ldr	r3, [r3, #0]
- 8000712:	f442 2200 	orr.w	r2, r2, #524288	; 0x80000
- 8000716:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 19);
- 8000718:	687b      	ldr	r3, [r7, #4]
- 800071a:	681b      	ldr	r3, [r3, #0]
- 800071c:	685a      	ldr	r2, [r3, #4]
- 800071e:	687b      	ldr	r3, [r7, #4]
- 8000720:	681b      	ldr	r3, [r3, #0]
- 8000722:	f422 2200 	bic.w	r2, r2, #524288	; 0x80000
- 8000726:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 7)
- 8000728:	4b81      	ldr	r3, [pc, #516]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 800072a:	681b      	ldr	r3, [r3, #0]
- 800072c:	2b07      	cmp	r3, #7
- 800072e:	d10f      	bne.n	8000750 <DMA_Interrupt_Init+0x2c0>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 25);
- 8000730:	687b      	ldr	r3, [r7, #4]
- 8000732:	681b      	ldr	r3, [r3, #0]
- 8000734:	68da      	ldr	r2, [r3, #12]
- 8000736:	687b      	ldr	r3, [r7, #4]
- 8000738:	681b      	ldr	r3, [r3, #0]
- 800073a:	f042 7200 	orr.w	r2, r2, #33554432	; 0x2000000
- 800073e:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 25);
- 8000740:	687b      	ldr	r3, [r7, #4]
- 8000742:	681b      	ldr	r3, [r3, #0]
- 8000744:	685a      	ldr	r2, [r3, #4]
- 8000746:	687b      	ldr	r3, [r7, #4]
- 8000748:	681b      	ldr	r3, [r3, #0]
- 800074a:	f022 7200 	bic.w	r2, r2, #33554432	; 0x2000000
- 800074e:	605a      	str	r2, [r3, #4]
-		}
-	}
-
-	if(self -> Interrupt & DMA_Interrupt_Half_Transfer_Complete)
- 8000750:	687b      	ldr	r3, [r7, #4]
- 8000752:	7d5b      	ldrb	r3, [r3, #21]
- 8000754:	f003 0308 	and.w	r3, r3, #8
- 8000758:	2b00      	cmp	r3, #0
- 800075a:	f000 80a0 	beq.w	800089e <DMA_Interrupt_Init+0x40e>
-	{
-
-		if(stream == 0)
- 800075e:	4b74      	ldr	r3, [pc, #464]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000760:	681b      	ldr	r3, [r3, #0]
- 8000762:	2b00      	cmp	r3, #0
- 8000764:	d10f      	bne.n	8000786 <DMA_Interrupt_Init+0x2f6>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 4);
- 8000766:	687b      	ldr	r3, [r7, #4]
- 8000768:	681b      	ldr	r3, [r3, #0]
- 800076a:	689a      	ldr	r2, [r3, #8]
- 800076c:	687b      	ldr	r3, [r7, #4]
- 800076e:	681b      	ldr	r3, [r3, #0]
- 8000770:	f042 0210 	orr.w	r2, r2, #16
- 8000774:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 4);
- 8000776:	687b      	ldr	r3, [r7, #4]
- 8000778:	681b      	ldr	r3, [r3, #0]
- 800077a:	681a      	ldr	r2, [r3, #0]
- 800077c:	687b      	ldr	r3, [r7, #4]
- 800077e:	681b      	ldr	r3, [r3, #0]
- 8000780:	f022 0210 	bic.w	r2, r2, #16
- 8000784:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 1)
- 8000786:	4b6a      	ldr	r3, [pc, #424]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000788:	681b      	ldr	r3, [r3, #0]
- 800078a:	2b01      	cmp	r3, #1
- 800078c:	d10f      	bne.n	80007ae <DMA_Interrupt_Init+0x31e>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 10);
- 800078e:	687b      	ldr	r3, [r7, #4]
- 8000790:	681b      	ldr	r3, [r3, #0]
- 8000792:	689a      	ldr	r2, [r3, #8]
- 8000794:	687b      	ldr	r3, [r7, #4]
- 8000796:	681b      	ldr	r3, [r3, #0]
- 8000798:	f442 6280 	orr.w	r2, r2, #1024	; 0x400
- 800079c:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 10);
- 800079e:	687b      	ldr	r3, [r7, #4]
- 80007a0:	681b      	ldr	r3, [r3, #0]
- 80007a2:	681a      	ldr	r2, [r3, #0]
- 80007a4:	687b      	ldr	r3, [r7, #4]
- 80007a6:	681b      	ldr	r3, [r3, #0]
- 80007a8:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
- 80007ac:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 2)
- 80007ae:	4b60      	ldr	r3, [pc, #384]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 80007b0:	681b      	ldr	r3, [r3, #0]
- 80007b2:	2b02      	cmp	r3, #2
- 80007b4:	d10f      	bne.n	80007d6 <DMA_Interrupt_Init+0x346>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 20);
- 80007b6:	687b      	ldr	r3, [r7, #4]
- 80007b8:	681b      	ldr	r3, [r3, #0]
- 80007ba:	689a      	ldr	r2, [r3, #8]
- 80007bc:	687b      	ldr	r3, [r7, #4]
- 80007be:	681b      	ldr	r3, [r3, #0]
- 80007c0:	f442 1280 	orr.w	r2, r2, #1048576	; 0x100000
- 80007c4:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 20);
- 80007c6:	687b      	ldr	r3, [r7, #4]
- 80007c8:	681b      	ldr	r3, [r3, #0]
- 80007ca:	681a      	ldr	r2, [r3, #0]
- 80007cc:	687b      	ldr	r3, [r7, #4]
- 80007ce:	681b      	ldr	r3, [r3, #0]
- 80007d0:	f422 1280 	bic.w	r2, r2, #1048576	; 0x100000
- 80007d4:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 3)
- 80007d6:	4b56      	ldr	r3, [pc, #344]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 80007d8:	681b      	ldr	r3, [r3, #0]
- 80007da:	2b03      	cmp	r3, #3
- 80007dc:	d10f      	bne.n	80007fe <DMA_Interrupt_Init+0x36e>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 26);
- 80007de:	687b      	ldr	r3, [r7, #4]
- 80007e0:	681b      	ldr	r3, [r3, #0]
- 80007e2:	689a      	ldr	r2, [r3, #8]
- 80007e4:	687b      	ldr	r3, [r7, #4]
- 80007e6:	681b      	ldr	r3, [r3, #0]
- 80007e8:	f042 6280 	orr.w	r2, r2, #67108864	; 0x4000000
- 80007ec:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 26);
- 80007ee:	687b      	ldr	r3, [r7, #4]
- 80007f0:	681b      	ldr	r3, [r3, #0]
- 80007f2:	681a      	ldr	r2, [r3, #0]
- 80007f4:	687b      	ldr	r3, [r7, #4]
- 80007f6:	681b      	ldr	r3, [r3, #0]
- 80007f8:	f022 6280 	bic.w	r2, r2, #67108864	; 0x4000000
- 80007fc:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 4)
- 80007fe:	4b4c      	ldr	r3, [pc, #304]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000800:	681b      	ldr	r3, [r3, #0]
- 8000802:	2b04      	cmp	r3, #4
- 8000804:	d10f      	bne.n	8000826 <DMA_Interrupt_Init+0x396>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 4);
- 8000806:	687b      	ldr	r3, [r7, #4]
- 8000808:	681b      	ldr	r3, [r3, #0]
- 800080a:	68da      	ldr	r2, [r3, #12]
- 800080c:	687b      	ldr	r3, [r7, #4]
- 800080e:	681b      	ldr	r3, [r3, #0]
- 8000810:	f042 0210 	orr.w	r2, r2, #16
- 8000814:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 4);
- 8000816:	687b      	ldr	r3, [r7, #4]
- 8000818:	681b      	ldr	r3, [r3, #0]
- 800081a:	685a      	ldr	r2, [r3, #4]
- 800081c:	687b      	ldr	r3, [r7, #4]
- 800081e:	681b      	ldr	r3, [r3, #0]
- 8000820:	f022 0210 	bic.w	r2, r2, #16
- 8000824:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 5)
- 8000826:	4b42      	ldr	r3, [pc, #264]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000828:	681b      	ldr	r3, [r3, #0]
- 800082a:	2b05      	cmp	r3, #5
- 800082c:	d10f      	bne.n	800084e <DMA_Interrupt_Init+0x3be>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 10);
- 800082e:	687b      	ldr	r3, [r7, #4]
- 8000830:	681b      	ldr	r3, [r3, #0]
- 8000832:	68da      	ldr	r2, [r3, #12]
- 8000834:	687b      	ldr	r3, [r7, #4]
- 8000836:	681b      	ldr	r3, [r3, #0]
- 8000838:	f442 6280 	orr.w	r2, r2, #1024	; 0x400
- 800083c:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 10);
- 800083e:	687b      	ldr	r3, [r7, #4]
- 8000840:	681b      	ldr	r3, [r3, #0]
- 8000842:	685a      	ldr	r2, [r3, #4]
- 8000844:	687b      	ldr	r3, [r7, #4]
- 8000846:	681b      	ldr	r3, [r3, #0]
- 8000848:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
- 800084c:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 6)
- 800084e:	4b38      	ldr	r3, [pc, #224]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000850:	681b      	ldr	r3, [r3, #0]
- 8000852:	2b06      	cmp	r3, #6
- 8000854:	d10f      	bne.n	8000876 <DMA_Interrupt_Init+0x3e6>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 20);
- 8000856:	687b      	ldr	r3, [r7, #4]
- 8000858:	681b      	ldr	r3, [r3, #0]
- 800085a:	68da      	ldr	r2, [r3, #12]
- 800085c:	687b      	ldr	r3, [r7, #4]
- 800085e:	681b      	ldr	r3, [r3, #0]
- 8000860:	f442 1280 	orr.w	r2, r2, #1048576	; 0x100000
- 8000864:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 20);
- 8000866:	687b      	ldr	r3, [r7, #4]
- 8000868:	681b      	ldr	r3, [r3, #0]
- 800086a:	685a      	ldr	r2, [r3, #4]
- 800086c:	687b      	ldr	r3, [r7, #4]
- 800086e:	681b      	ldr	r3, [r3, #0]
- 8000870:	f422 1280 	bic.w	r2, r2, #1048576	; 0x100000
- 8000874:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 7)
- 8000876:	4b2e      	ldr	r3, [pc, #184]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000878:	681b      	ldr	r3, [r3, #0]
- 800087a:	2b07      	cmp	r3, #7
- 800087c:	d10f      	bne.n	800089e <DMA_Interrupt_Init+0x40e>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 26);
- 800087e:	687b      	ldr	r3, [r7, #4]
- 8000880:	681b      	ldr	r3, [r3, #0]
- 8000882:	68da      	ldr	r2, [r3, #12]
- 8000884:	687b      	ldr	r3, [r7, #4]
- 8000886:	681b      	ldr	r3, [r3, #0]
- 8000888:	f042 6280 	orr.w	r2, r2, #67108864	; 0x4000000
- 800088c:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 26);
- 800088e:	687b      	ldr	r3, [r7, #4]
- 8000890:	681b      	ldr	r3, [r3, #0]
- 8000892:	685a      	ldr	r2, [r3, #4]
- 8000894:	687b      	ldr	r3, [r7, #4]
- 8000896:	681b      	ldr	r3, [r3, #0]
- 8000898:	f022 6280 	bic.w	r2, r2, #67108864	; 0x4000000
- 800089c:	605a      	str	r2, [r3, #4]
-		}
-	}
-
-	if(self -> Interrupt & DMA_Interrupt_Full_Transfer_Complete)
- 800089e:	687b      	ldr	r3, [r7, #4]
- 80008a0:	7d5b      	ldrb	r3, [r3, #21]
- 80008a2:	f003 0310 	and.w	r3, r3, #16
- 80008a6:	2b00      	cmp	r3, #0
- 80008a8:	f000 80a4 	beq.w	80009f4 <DMA_Interrupt_Init+0x564>
-	{
-
-		if(stream == 0)
- 80008ac:	4b20      	ldr	r3, [pc, #128]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 80008ae:	681b      	ldr	r3, [r3, #0]
- 80008b0:	2b00      	cmp	r3, #0
- 80008b2:	d10f      	bne.n	80008d4 <DMA_Interrupt_Init+0x444>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 5);
- 80008b4:	687b      	ldr	r3, [r7, #4]
- 80008b6:	681b      	ldr	r3, [r3, #0]
- 80008b8:	689a      	ldr	r2, [r3, #8]
- 80008ba:	687b      	ldr	r3, [r7, #4]
- 80008bc:	681b      	ldr	r3, [r3, #0]
- 80008be:	f042 0220 	orr.w	r2, r2, #32
- 80008c2:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 5);
- 80008c4:	687b      	ldr	r3, [r7, #4]
- 80008c6:	681b      	ldr	r3, [r3, #0]
- 80008c8:	681a      	ldr	r2, [r3, #0]
- 80008ca:	687b      	ldr	r3, [r7, #4]
- 80008cc:	681b      	ldr	r3, [r3, #0]
- 80008ce:	f022 0220 	bic.w	r2, r2, #32
- 80008d2:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 1)
- 80008d4:	4b16      	ldr	r3, [pc, #88]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 80008d6:	681b      	ldr	r3, [r3, #0]
- 80008d8:	2b01      	cmp	r3, #1
- 80008da:	d10f      	bne.n	80008fc <DMA_Interrupt_Init+0x46c>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 11);
- 80008dc:	687b      	ldr	r3, [r7, #4]
- 80008de:	681b      	ldr	r3, [r3, #0]
- 80008e0:	689a      	ldr	r2, [r3, #8]
- 80008e2:	687b      	ldr	r3, [r7, #4]
- 80008e4:	681b      	ldr	r3, [r3, #0]
- 80008e6:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
- 80008ea:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 11);
- 80008ec:	687b      	ldr	r3, [r7, #4]
- 80008ee:	681b      	ldr	r3, [r3, #0]
- 80008f0:	681a      	ldr	r2, [r3, #0]
- 80008f2:	687b      	ldr	r3, [r7, #4]
- 80008f4:	681b      	ldr	r3, [r3, #0]
- 80008f6:	f422 6200 	bic.w	r2, r2, #2048	; 0x800
- 80008fa:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 2)
- 80008fc:	4b0c      	ldr	r3, [pc, #48]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 80008fe:	681b      	ldr	r3, [r3, #0]
- 8000900:	2b02      	cmp	r3, #2
- 8000902:	d10f      	bne.n	8000924 <DMA_Interrupt_Init+0x494>
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 21);
- 8000904:	687b      	ldr	r3, [r7, #4]
- 8000906:	681b      	ldr	r3, [r3, #0]
- 8000908:	689a      	ldr	r2, [r3, #8]
- 800090a:	687b      	ldr	r3, [r7, #4]
- 800090c:	681b      	ldr	r3, [r3, #0]
- 800090e:	f442 1200 	orr.w	r2, r2, #2097152	; 0x200000
- 8000912:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 21);
- 8000914:	687b      	ldr	r3, [r7, #4]
- 8000916:	681b      	ldr	r3, [r3, #0]
- 8000918:	681a      	ldr	r2, [r3, #0]
- 800091a:	687b      	ldr	r3, [r7, #4]
- 800091c:	681b      	ldr	r3, [r3, #0]
- 800091e:	f422 1200 	bic.w	r2, r2, #2097152	; 0x200000
- 8000922:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 3)
- 8000924:	4b02      	ldr	r3, [pc, #8]	; (8000930 <DMA_Interrupt_Init+0x4a0>)
- 8000926:	681b      	ldr	r3, [r3, #0]
- 8000928:	2b03      	cmp	r3, #3
- 800092a:	d113      	bne.n	8000954 <DMA_Interrupt_Init+0x4c4>
- 800092c:	e002      	b.n	8000934 <DMA_Interrupt_Init+0x4a4>
- 800092e:	bf00      	nop
- 8000930:	2000001c 	.word	0x2000001c
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 27);
- 8000934:	687b      	ldr	r3, [r7, #4]
- 8000936:	681b      	ldr	r3, [r3, #0]
- 8000938:	689a      	ldr	r2, [r3, #8]
- 800093a:	687b      	ldr	r3, [r7, #4]
- 800093c:	681b      	ldr	r3, [r3, #0]
- 800093e:	f042 6200 	orr.w	r2, r2, #134217728	; 0x8000000
- 8000942:	609a      	str	r2, [r3, #8]
-			self -> Controller_Typedef -> LISR  &= ~(1 << 27);
- 8000944:	687b      	ldr	r3, [r7, #4]
- 8000946:	681b      	ldr	r3, [r3, #0]
- 8000948:	681a      	ldr	r2, [r3, #0]
- 800094a:	687b      	ldr	r3, [r7, #4]
- 800094c:	681b      	ldr	r3, [r3, #0]
- 800094e:	f022 6200 	bic.w	r2, r2, #134217728	; 0x8000000
- 8000952:	601a      	str	r2, [r3, #0]
-		}
-		if(stream == 4)
- 8000954:	4b2a      	ldr	r3, [pc, #168]	; (8000a00 <DMA_Interrupt_Init+0x570>)
- 8000956:	681b      	ldr	r3, [r3, #0]
- 8000958:	2b04      	cmp	r3, #4
- 800095a:	d10f      	bne.n	800097c <DMA_Interrupt_Init+0x4ec>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 5);
- 800095c:	687b      	ldr	r3, [r7, #4]
- 800095e:	681b      	ldr	r3, [r3, #0]
- 8000960:	68da      	ldr	r2, [r3, #12]
- 8000962:	687b      	ldr	r3, [r7, #4]
- 8000964:	681b      	ldr	r3, [r3, #0]
- 8000966:	f042 0220 	orr.w	r2, r2, #32
- 800096a:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 5);
- 800096c:	687b      	ldr	r3, [r7, #4]
- 800096e:	681b      	ldr	r3, [r3, #0]
- 8000970:	685a      	ldr	r2, [r3, #4]
- 8000972:	687b      	ldr	r3, [r7, #4]
- 8000974:	681b      	ldr	r3, [r3, #0]
- 8000976:	f022 0220 	bic.w	r2, r2, #32
- 800097a:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 5)
- 800097c:	4b20      	ldr	r3, [pc, #128]	; (8000a00 <DMA_Interrupt_Init+0x570>)
- 800097e:	681b      	ldr	r3, [r3, #0]
- 8000980:	2b05      	cmp	r3, #5
- 8000982:	d10f      	bne.n	80009a4 <DMA_Interrupt_Init+0x514>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 11);
- 8000984:	687b      	ldr	r3, [r7, #4]
- 8000986:	681b      	ldr	r3, [r3, #0]
- 8000988:	68da      	ldr	r2, [r3, #12]
- 800098a:	687b      	ldr	r3, [r7, #4]
- 800098c:	681b      	ldr	r3, [r3, #0]
- 800098e:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
- 8000992:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 11);
- 8000994:	687b      	ldr	r3, [r7, #4]
- 8000996:	681b      	ldr	r3, [r3, #0]
- 8000998:	685a      	ldr	r2, [r3, #4]
- 800099a:	687b      	ldr	r3, [r7, #4]
- 800099c:	681b      	ldr	r3, [r3, #0]
- 800099e:	f422 6200 	bic.w	r2, r2, #2048	; 0x800
- 80009a2:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 6)
- 80009a4:	4b16      	ldr	r3, [pc, #88]	; (8000a00 <DMA_Interrupt_Init+0x570>)
- 80009a6:	681b      	ldr	r3, [r3, #0]
- 80009a8:	2b06      	cmp	r3, #6
- 80009aa:	d10f      	bne.n	80009cc <DMA_Interrupt_Init+0x53c>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 21);
- 80009ac:	687b      	ldr	r3, [r7, #4]
- 80009ae:	681b      	ldr	r3, [r3, #0]
- 80009b0:	68da      	ldr	r2, [r3, #12]
- 80009b2:	687b      	ldr	r3, [r7, #4]
- 80009b4:	681b      	ldr	r3, [r3, #0]
- 80009b6:	f442 1200 	orr.w	r2, r2, #2097152	; 0x200000
- 80009ba:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 21);
- 80009bc:	687b      	ldr	r3, [r7, #4]
- 80009be:	681b      	ldr	r3, [r3, #0]
- 80009c0:	685a      	ldr	r2, [r3, #4]
- 80009c2:	687b      	ldr	r3, [r7, #4]
- 80009c4:	681b      	ldr	r3, [r3, #0]
- 80009c6:	f422 1200 	bic.w	r2, r2, #2097152	; 0x200000
- 80009ca:	605a      	str	r2, [r3, #4]
-		}
-		if(stream == 7)
- 80009cc:	4b0c      	ldr	r3, [pc, #48]	; (8000a00 <DMA_Interrupt_Init+0x570>)
- 80009ce:	681b      	ldr	r3, [r3, #0]
- 80009d0:	2b07      	cmp	r3, #7
- 80009d2:	d10f      	bne.n	80009f4 <DMA_Interrupt_Init+0x564>
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 27);
- 80009d4:	687b      	ldr	r3, [r7, #4]
- 80009d6:	681b      	ldr	r3, [r3, #0]
- 80009d8:	68da      	ldr	r2, [r3, #12]
- 80009da:	687b      	ldr	r3, [r7, #4]
- 80009dc:	681b      	ldr	r3, [r3, #0]
- 80009de:	f042 6200 	orr.w	r2, r2, #134217728	; 0x8000000
- 80009e2:	60da      	str	r2, [r3, #12]
-			self -> Controller_Typedef -> HISR  &= ~(1 << 27);
- 80009e4:	687b      	ldr	r3, [r7, #4]
- 80009e6:	681b      	ldr	r3, [r3, #0]
- 80009e8:	685a      	ldr	r2, [r3, #4]
- 80009ea:	687b      	ldr	r3, [r7, #4]
- 80009ec:	681b      	ldr	r3, [r3, #0]
- 80009ee:	f022 6200 	bic.w	r2, r2, #134217728	; 0x8000000
- 80009f2:	605a      	str	r2, [r3, #4]
-		}
-	}
+  SysTick->LOAD  = (uint32_t)(ticks - 1UL);                         /* set reload register */
+ 8000252:	4a0a      	ldr	r2, [pc, #40]	; (800027c <SysTick_Config+0x40>)
+ 8000254:	687b      	ldr	r3, [r7, #4]
+ 8000256:	3b01      	subs	r3, #1
+ 8000258:	6053      	str	r3, [r2, #4]
+  NVIC_SetPriority (SysTick_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+ 800025a:	210f      	movs	r1, #15
+ 800025c:	f04f 30ff 	mov.w	r0, #4294967295
+ 8000260:	f7ff ffc2 	bl	80001e8 <__NVIC_SetPriority>
+  SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
+ 8000264:	4b05      	ldr	r3, [pc, #20]	; (800027c <SysTick_Config+0x40>)
+ 8000266:	2200      	movs	r2, #0
+ 8000268:	609a      	str	r2, [r3, #8]
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+ 800026a:	4b04      	ldr	r3, [pc, #16]	; (800027c <SysTick_Config+0x40>)
+ 800026c:	2207      	movs	r2, #7
+ 800026e:	601a      	str	r2, [r3, #0]
+                   SysTick_CTRL_TICKINT_Msk   |
+                   SysTick_CTRL_ENABLE_Msk;                         /* Enable SysTick IRQ and SysTick Timer */
+  return (0UL);                                                     /* Function successful */
+ 8000270:	2300      	movs	r3, #0
 }
- 80009f4:	bf00      	nop
- 80009f6:	370c      	adds	r7, #12
- 80009f8:	46bd      	mov	sp, r7
- 80009fa:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80009fe:	4770      	bx	lr
- 8000a00:	2000001c 	.word	0x2000001c
+ 8000272:	4618      	mov	r0, r3
+ 8000274:	3708      	adds	r7, #8
+ 8000276:	46bd      	mov	sp, r7
+ 8000278:	bd80      	pop	{r7, pc}
+ 800027a:	bf00      	nop
+ 800027c:	e000e010 	.word	0xe000e010
 
-08000a04 <main>:
+08000280 <MCU_Clock_Setup>:
+{
+	return (SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE2)>> RCC_CFGR_PPRE2_Pos]);
+}
+
+__STATIC_INLINE void MCU_Clock_Setup(void)
+{
+ 8000280:	b580      	push	{r7, lr}
+ 8000282:	b082      	sub	sp, #8
+ 8000284:	af00      	add	r7, sp, #0
+	uint8_t pll_m = 4;
+ 8000286:	2304      	movs	r3, #4
+ 8000288:	71fb      	strb	r3, [r7, #7]
+	uint8_t pll_n = 168; //192
+ 800028a:	23a8      	movs	r3, #168	; 0xa8
+ 800028c:	71bb      	strb	r3, [r7, #6]
+	uint8_t pll_p = 0;
+ 800028e:	2300      	movs	r3, #0
+ 8000290:	717b      	strb	r3, [r7, #5]
+	uint8_t pll_q = 7;
+ 8000292:	2307      	movs	r3, #7
+ 8000294:	713b      	strb	r3, [r7, #4]
+
+	RCC->PLLCFGR = 0x00000000;
+ 8000296:	4b3d      	ldr	r3, [pc, #244]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000298:	2200      	movs	r2, #0
+ 800029a:	605a      	str	r2, [r3, #4]
+	RCC -> CR |= RCC_CR_HSEON;
+ 800029c:	4b3b      	ldr	r3, [pc, #236]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800029e:	681b      	ldr	r3, [r3, #0]
+ 80002a0:	4a3a      	ldr	r2, [pc, #232]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002a2:	f443 3380 	orr.w	r3, r3, #65536	; 0x10000
+ 80002a6:	6013      	str	r3, [r2, #0]
+	while(!(RCC -> CR & RCC_CR_HSERDY)){}
+ 80002a8:	bf00      	nop
+ 80002aa:	4b38      	ldr	r3, [pc, #224]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002ac:	681b      	ldr	r3, [r3, #0]
+ 80002ae:	f403 3300 	and.w	r3, r3, #131072	; 0x20000
+ 80002b2:	2b00      	cmp	r3, #0
+ 80002b4:	d0f9      	beq.n	80002aa <MCU_Clock_Setup+0x2a>
+	RCC -> APB1ENR |= RCC_APB1ENR_PWREN;
+ 80002b6:	4b35      	ldr	r3, [pc, #212]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002b8:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+ 80002ba:	4a34      	ldr	r2, [pc, #208]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002bc:	f043 5380 	orr.w	r3, r3, #268435456	; 0x10000000
+ 80002c0:	6413      	str	r3, [r2, #64]	; 0x40
+	PWR ->CR |= PWR_CR_VOS;
+ 80002c2:	4b33      	ldr	r3, [pc, #204]	; (8000390 <MCU_Clock_Setup+0x110>)
+ 80002c4:	681b      	ldr	r3, [r3, #0]
+ 80002c6:	4a32      	ldr	r2, [pc, #200]	; (8000390 <MCU_Clock_Setup+0x110>)
+ 80002c8:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 80002cc:	6013      	str	r3, [r2, #0]
+	FLASH -> ACR |= FLASH_ACR_ICEN | FLASH_ACR_PRFTEN | FLASH_ACR_DCEN | FLASH_ACR_LATENCY_5WS;
+ 80002ce:	4b31      	ldr	r3, [pc, #196]	; (8000394 <MCU_Clock_Setup+0x114>)
+ 80002d0:	681b      	ldr	r3, [r3, #0]
+ 80002d2:	4a30      	ldr	r2, [pc, #192]	; (8000394 <MCU_Clock_Setup+0x114>)
+ 80002d4:	f443 63e0 	orr.w	r3, r3, #1792	; 0x700
+ 80002d8:	f043 0305 	orr.w	r3, r3, #5
+ 80002dc:	6013      	str	r3, [r2, #0]
+	RCC->PLLCFGR |= (pll_q << 24) | (pll_p << 16) | (pll_n << 6) | (pll_m << 0);
+ 80002de:	4b2b      	ldr	r3, [pc, #172]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002e0:	685b      	ldr	r3, [r3, #4]
+ 80002e2:	793a      	ldrb	r2, [r7, #4]
+ 80002e4:	0611      	lsls	r1, r2, #24
+ 80002e6:	797a      	ldrb	r2, [r7, #5]
+ 80002e8:	0412      	lsls	r2, r2, #16
+ 80002ea:	4311      	orrs	r1, r2
+ 80002ec:	79ba      	ldrb	r2, [r7, #6]
+ 80002ee:	0192      	lsls	r2, r2, #6
+ 80002f0:	4311      	orrs	r1, r2
+ 80002f2:	79fa      	ldrb	r2, [r7, #7]
+ 80002f4:	430a      	orrs	r2, r1
+ 80002f6:	4611      	mov	r1, r2
+ 80002f8:	4a24      	ldr	r2, [pc, #144]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 80002fa:	430b      	orrs	r3, r1
+ 80002fc:	6053      	str	r3, [r2, #4]
+	RCC ->PLLCFGR |= 1 << 22;
+ 80002fe:	4b23      	ldr	r3, [pc, #140]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000300:	685b      	ldr	r3, [r3, #4]
+ 8000302:	4a22      	ldr	r2, [pc, #136]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000304:	f443 0380 	orr.w	r3, r3, #4194304	; 0x400000
+ 8000308:	6053      	str	r3, [r2, #4]
+	RCC -> CFGR |= RCC_CFGR_HPRE_DIV1;
+ 800030a:	4b20      	ldr	r3, [pc, #128]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800030c:	4a1f      	ldr	r2, [pc, #124]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800030e:	689b      	ldr	r3, [r3, #8]
+ 8000310:	6093      	str	r3, [r2, #8]
+	RCC -> CFGR |= RCC_CFGR_PPRE1_DIV4;
+ 8000312:	4b1e      	ldr	r3, [pc, #120]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000314:	689b      	ldr	r3, [r3, #8]
+ 8000316:	4a1d      	ldr	r2, [pc, #116]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000318:	f443 53a0 	orr.w	r3, r3, #5120	; 0x1400
+ 800031c:	6093      	str	r3, [r2, #8]
+	RCC -> CFGR |= RCC_CFGR_PPRE2_DIV2;
+ 800031e:	4b1b      	ldr	r3, [pc, #108]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000320:	689b      	ldr	r3, [r3, #8]
+ 8000322:	4a1a      	ldr	r2, [pc, #104]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000324:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+ 8000328:	6093      	str	r3, [r2, #8]
+	RCC -> CR |= RCC_CR_PLLON;
+ 800032a:	4b18      	ldr	r3, [pc, #96]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800032c:	681b      	ldr	r3, [r3, #0]
+ 800032e:	4a17      	ldr	r2, [pc, #92]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000330:	f043 7380 	orr.w	r3, r3, #16777216	; 0x1000000
+ 8000334:	6013      	str	r3, [r2, #0]
+	while(!(RCC->CR & RCC_CR_PLLRDY)){}
+ 8000336:	bf00      	nop
+ 8000338:	4b14      	ldr	r3, [pc, #80]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800033a:	681b      	ldr	r3, [r3, #0]
+ 800033c:	f003 7300 	and.w	r3, r3, #33554432	; 0x2000000
+ 8000340:	2b00      	cmp	r3, #0
+ 8000342:	d0f9      	beq.n	8000338 <MCU_Clock_Setup+0xb8>
+	RCC -> CFGR |= RCC_CFGR_SW_PLL;
+ 8000344:	4b11      	ldr	r3, [pc, #68]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000346:	689b      	ldr	r3, [r3, #8]
+ 8000348:	4a10      	ldr	r2, [pc, #64]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800034a:	f043 0302 	orr.w	r3, r3, #2
+ 800034e:	6093      	str	r3, [r2, #8]
+	while((RCC -> CFGR & RCC_CFGR_SWS_PLL) != RCC_CFGR_SWS_PLL);
+ 8000350:	bf00      	nop
+ 8000352:	4b0e      	ldr	r3, [pc, #56]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000354:	689b      	ldr	r3, [r3, #8]
+ 8000356:	f003 0308 	and.w	r3, r3, #8
+ 800035a:	2b08      	cmp	r3, #8
+ 800035c:	d1f9      	bne.n	8000352 <MCU_Clock_Setup+0xd2>
+	SystemCoreClockUpdate();
+ 800035e:	f000 f855 	bl	800040c <SystemCoreClockUpdate>
+	SysTick_Config(SystemCoreClock/168);
+ 8000362:	4b0d      	ldr	r3, [pc, #52]	; (8000398 <MCU_Clock_Setup+0x118>)
+ 8000364:	681b      	ldr	r3, [r3, #0]
+ 8000366:	08db      	lsrs	r3, r3, #3
+ 8000368:	4a0c      	ldr	r2, [pc, #48]	; (800039c <MCU_Clock_Setup+0x11c>)
+ 800036a:	fba2 2303 	umull	r2, r3, r2, r3
+ 800036e:	085b      	lsrs	r3, r3, #1
+ 8000370:	4618      	mov	r0, r3
+ 8000372:	f7ff ff63 	bl	800023c <SysTick_Config>
+	RCC -> APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+ 8000376:	4b05      	ldr	r3, [pc, #20]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 8000378:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 800037a:	4a04      	ldr	r2, [pc, #16]	; (800038c <MCU_Clock_Setup+0x10c>)
+ 800037c:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 8000380:	6453      	str	r3, [r2, #68]	; 0x44
+}
+ 8000382:	bf00      	nop
+ 8000384:	3708      	adds	r7, #8
+ 8000386:	46bd      	mov	sp, r7
+ 8000388:	bd80      	pop	{r7, pc}
+ 800038a:	bf00      	nop
+ 800038c:	40023800 	.word	0x40023800
+ 8000390:	40007000 	.word	0x40007000
+ 8000394:	40023c00 	.word	0x40023c00
+ 8000398:	20000000 	.word	0x20000000
+ 800039c:	18618619 	.word	0x18618619
+
+080003a0 <Delay_Config>:
+}
+
+
+
+__STATIC_INLINE uint32_t Delay_Config(void)
+{
+ 80003a0:	b480      	push	{r7}
+ 80003a2:	af00      	add	r7, sp, #0
+
+	SysTick->CTRL = 0;
+ 80003a4:	4b09      	ldr	r3, [pc, #36]	; (80003cc <Delay_Config+0x2c>)
+ 80003a6:	2200      	movs	r2, #0
+ 80003a8:	601a      	str	r2, [r3, #0]
+	SysTick->LOAD = 0x00FFFFFF;
+ 80003aa:	4b08      	ldr	r3, [pc, #32]	; (80003cc <Delay_Config+0x2c>)
+ 80003ac:	f06f 427f 	mvn.w	r2, #4278190080	; 0xff000000
+ 80003b0:	605a      	str	r2, [r3, #4]
+	SysTick->VAL = 0;
+ 80003b2:	4b06      	ldr	r3, [pc, #24]	; (80003cc <Delay_Config+0x2c>)
+ 80003b4:	2200      	movs	r2, #0
+ 80003b6:	609a      	str	r2, [r3, #8]
+	SysTick->CTRL = 5;
+ 80003b8:	4b04      	ldr	r3, [pc, #16]	; (80003cc <Delay_Config+0x2c>)
+ 80003ba:	2205      	movs	r2, #5
+ 80003bc:	601a      	str	r2, [r3, #0]
+	return (0UL);                                                     /* Function successful */
+ 80003be:	2300      	movs	r3, #0
+}
+ 80003c0:	4618      	mov	r0, r3
+ 80003c2:	46bd      	mov	sp, r7
+ 80003c4:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80003c8:	4770      	bx	lr
+ 80003ca:	bf00      	nop
+ 80003cc:	e000e010 	.word	0xe000e010
+
+080003d0 <main>:
 
 
 
 
 int main(void)
 {
- 8000a04:	b580      	push	{r7, lr}
- 8000a06:	af00      	add	r7, sp, #0
+ 80003d0:	b580      	push	{r7, lr}
+ 80003d2:	b0b4      	sub	sp, #208	; 0xd0
+ 80003d4:	af00      	add	r7, sp, #0
+
+	uint16_t source = 0xAA; //Value to be filled in the buffer. Can be any value
+ 80003d6:	23aa      	movs	r3, #170	; 0xaa
+ 80003d8:	f8a7 30ce 	strh.w	r3, [r7, #206]	; 0xce
+	uint16_t buffer[100];	//Buffer in which the value is to be filled.
+
+	MCU_Clock_Setup();
+ 80003dc:	f7ff ff50 	bl	8000280 <MCU_Clock_Setup>
+	Delay_Config();
+ 80003e0:	f7ff ffde 	bl	80003a0 <Delay_Config>
 
 
 
-	UART_DMA.Controller_Typedef = DMA2;
- 8000a08:	4b15      	ldr	r3, [pc, #84]	; (8000a60 <main+0x5c>)
- 8000a0a:	4a16      	ldr	r2, [pc, #88]	; (8000a64 <main+0x60>)
- 8000a0c:	601a      	str	r2, [r3, #0]
-	UART_DMA.Stream_Typedef = DMA2_Stream7;
- 8000a0e:	4b14      	ldr	r3, [pc, #80]	; (8000a60 <main+0x5c>)
- 8000a10:	4a15      	ldr	r2, [pc, #84]	; (8000a68 <main+0x64>)
- 8000a12:	609a      	str	r2, [r3, #8]
-	UART_DMA.Channel = 4;
- 8000a14:	4b12      	ldr	r3, [pc, #72]	; (8000a60 <main+0x5c>)
- 8000a16:	2204      	movs	r2, #4
- 8000a18:	731a      	strb	r2, [r3, #12]
-	UART_DMA.Circular_Mode = DMA_Circular_Mode_Enable;
- 8000a1a:	4b11      	ldr	r3, [pc, #68]	; (8000a60 <main+0x5c>)
- 8000a1c:	2201      	movs	r2, #1
- 8000a1e:	749a      	strb	r2, [r3, #18]
-	UART_DMA.Data_Size = 15;
- 8000a20:	4b0f      	ldr	r3, [pc, #60]	; (8000a60 <main+0x5c>)
- 8000a22:	220f      	movs	r2, #15
- 8000a24:	821a      	strh	r2, [r3, #16]
-	UART_DMA.Direction = DMA_Direction_Memory_To_Peripheral;
- 8000a26:	4b0e      	ldr	r3, [pc, #56]	; (8000a60 <main+0x5c>)
- 8000a28:	2201      	movs	r2, #1
- 8000a2a:	74da      	strb	r2, [r3, #19]
-	UART_DMA.Flow_Control = DMA_Flow_Control_DMA;
- 8000a2c:	4b0c      	ldr	r3, [pc, #48]	; (8000a60 <main+0x5c>)
- 8000a2e:	2200      	movs	r2, #0
- 8000a30:	751a      	strb	r2, [r3, #20]
-	UART_DMA.Low_Power_Mode = DMA_Lowe_Power_Mode_Disable;
- 8000a32:	4b0b      	ldr	r3, [pc, #44]	; (8000a60 <main+0x5c>)
- 8000a34:	2200      	movs	r2, #0
- 8000a36:	711a      	strb	r2, [r3, #4]
-	UART_DMA.Memory_Size = DMA_Memory_Size_8;
- 8000a38:	4b09      	ldr	r3, [pc, #36]	; (8000a60 <main+0x5c>)
- 8000a3a:	2200      	movs	r2, #0
- 8000a3c:	739a      	strb	r2, [r3, #14]
-	UART_DMA.Peripheral_Size = DMA_Peripheral_Size_8;
- 8000a3e:	4b08      	ldr	r3, [pc, #32]	; (8000a60 <main+0x5c>)
- 8000a40:	2200      	movs	r2, #0
- 8000a42:	73da      	strb	r2, [r3, #15]
-	UART_DMA.Priority_Level = DMA_Priority_Very_high;
- 8000a44:	4b06      	ldr	r3, [pc, #24]	; (8000a60 <main+0x5c>)
- 8000a46:	2200      	movs	r2, #0
- 8000a48:	735a      	strb	r2, [r3, #13]
-	UART_DMA.Interrupt = DMA_Interrupt_Full_Transfer_Complete | DMA_Interrupt_Half_Transfer_Complete;
- 8000a4a:	4b05      	ldr	r3, [pc, #20]	; (8000a60 <main+0x5c>)
- 8000a4c:	2218      	movs	r2, #24
- 8000a4e:	755a      	strb	r2, [r3, #21]
-	DMA_Init(&UART_DMA);
- 8000a50:	4803      	ldr	r0, [pc, #12]	; (8000a60 <main+0x5c>)
- 8000a52:	f7ff fbc9 	bl	80001e8 <DMA_Init>
-	DMA_Interrupt_Init(&UART_DMA);
- 8000a56:	4802      	ldr	r0, [pc, #8]	; (8000a60 <main+0x5c>)
- 8000a58:	f7ff fd1a 	bl	8000490 <DMA_Interrupt_Init>
 
 
-    /* Loop forever */
+	for(;;)
+ 80003e4:	e7fe      	b.n	80003e4 <main+0x14>
+	...
 
-
-	for(;;);
- 8000a5c:	e7fe      	b.n	8000a5c <main+0x58>
- 8000a5e:	bf00      	nop
- 8000a60:	20000024 	.word	0x20000024
- 8000a64:	40026400 	.word	0x40026400
- 8000a68:	400264b8 	.word	0x400264b8
-
-08000a6c <SystemInit>:
+080003e8 <SystemInit>:
   *         configuration.
   * @param  None
   * @retval None
   */
 void SystemInit(void)
 {
- 8000a6c:	b480      	push	{r7}
- 8000a6e:	af00      	add	r7, sp, #0
+ 80003e8:	b480      	push	{r7}
+ 80003ea:	af00      	add	r7, sp, #0
   /* FPU settings ------------------------------------------------------------*/
   #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
     SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
- 8000a70:	4b06      	ldr	r3, [pc, #24]	; (8000a8c <SystemInit+0x20>)
- 8000a72:	f8d3 3088 	ldr.w	r3, [r3, #136]	; 0x88
- 8000a76:	4a05      	ldr	r2, [pc, #20]	; (8000a8c <SystemInit+0x20>)
- 8000a78:	f443 0370 	orr.w	r3, r3, #15728640	; 0xf00000
- 8000a7c:	f8c2 3088 	str.w	r3, [r2, #136]	; 0x88
+ 80003ec:	4b06      	ldr	r3, [pc, #24]	; (8000408 <SystemInit+0x20>)
+ 80003ee:	f8d3 3088 	ldr.w	r3, [r3, #136]	; 0x88
+ 80003f2:	4a05      	ldr	r2, [pc, #20]	; (8000408 <SystemInit+0x20>)
+ 80003f4:	f443 0370 	orr.w	r3, r3, #15728640	; 0xf00000
+ 80003f8:	f8c2 3088 	str.w	r3, [r2, #136]	; 0x88
 
   /* Configure the Vector Table location -------------------------------------*/
 #if defined(USER_VECT_TAB_ADDRESS)
   SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
 #endif /* USER_VECT_TAB_ADDRESS */
 }
- 8000a80:	bf00      	nop
- 8000a82:	46bd      	mov	sp, r7
- 8000a84:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000a88:	4770      	bx	lr
- 8000a8a:	bf00      	nop
- 8000a8c:	e000ed00 	.word	0xe000ed00
+ 80003fc:	bf00      	nop
+ 80003fe:	46bd      	mov	sp, r7
+ 8000400:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000404:	4770      	bx	lr
+ 8000406:	bf00      	nop
+ 8000408:	e000ed00 	.word	0xe000ed00
 
-08000a90 <Reset_Handler>:
+0800040c <SystemCoreClockUpdate>:
+  *     
+  * @param  None
+  * @retval None
+  */
+void SystemCoreClockUpdate(void)
+{
+ 800040c:	b480      	push	{r7}
+ 800040e:	b087      	sub	sp, #28
+ 8000410:	af00      	add	r7, sp, #0
+  uint32_t tmp = 0, pllvco = 0, pllp = 2, pllsource = 0, pllm = 2;
+ 8000412:	2300      	movs	r3, #0
+ 8000414:	613b      	str	r3, [r7, #16]
+ 8000416:	2300      	movs	r3, #0
+ 8000418:	617b      	str	r3, [r7, #20]
+ 800041a:	2302      	movs	r3, #2
+ 800041c:	60fb      	str	r3, [r7, #12]
+ 800041e:	2300      	movs	r3, #0
+ 8000420:	60bb      	str	r3, [r7, #8]
+ 8000422:	2302      	movs	r3, #2
+ 8000424:	607b      	str	r3, [r7, #4]
+  
+  /* Get SYSCLK source -------------------------------------------------------*/
+  tmp = RCC->CFGR & RCC_CFGR_SWS;
+ 8000426:	4b34      	ldr	r3, [pc, #208]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 8000428:	689b      	ldr	r3, [r3, #8]
+ 800042a:	f003 030c 	and.w	r3, r3, #12
+ 800042e:	613b      	str	r3, [r7, #16]
+
+  switch (tmp)
+ 8000430:	693b      	ldr	r3, [r7, #16]
+ 8000432:	2b08      	cmp	r3, #8
+ 8000434:	d011      	beq.n	800045a <SystemCoreClockUpdate+0x4e>
+ 8000436:	693b      	ldr	r3, [r7, #16]
+ 8000438:	2b08      	cmp	r3, #8
+ 800043a:	d844      	bhi.n	80004c6 <SystemCoreClockUpdate+0xba>
+ 800043c:	693b      	ldr	r3, [r7, #16]
+ 800043e:	2b00      	cmp	r3, #0
+ 8000440:	d003      	beq.n	800044a <SystemCoreClockUpdate+0x3e>
+ 8000442:	693b      	ldr	r3, [r7, #16]
+ 8000444:	2b04      	cmp	r3, #4
+ 8000446:	d004      	beq.n	8000452 <SystemCoreClockUpdate+0x46>
+ 8000448:	e03d      	b.n	80004c6 <SystemCoreClockUpdate+0xba>
+  {
+    case 0x00:  /* HSI used as system clock source */
+      SystemCoreClock = HSI_VALUE;
+ 800044a:	4b2c      	ldr	r3, [pc, #176]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 800044c:	4a2c      	ldr	r2, [pc, #176]	; (8000500 <SystemCoreClockUpdate+0xf4>)
+ 800044e:	601a      	str	r2, [r3, #0]
+      break;
+ 8000450:	e03d      	b.n	80004ce <SystemCoreClockUpdate+0xc2>
+    case 0x04:  /* HSE used as system clock source */
+      SystemCoreClock = HSE_VALUE;
+ 8000452:	4b2a      	ldr	r3, [pc, #168]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 8000454:	4a2b      	ldr	r2, [pc, #172]	; (8000504 <SystemCoreClockUpdate+0xf8>)
+ 8000456:	601a      	str	r2, [r3, #0]
+      break;
+ 8000458:	e039      	b.n	80004ce <SystemCoreClockUpdate+0xc2>
+    case 0x08:  /* PLL used as system clock source */
+
+      /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
+         SYSCLK = PLL_VCO / PLL_P
+         */    
+      pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> 22;
+ 800045a:	4b27      	ldr	r3, [pc, #156]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 800045c:	685b      	ldr	r3, [r3, #4]
+ 800045e:	0d9b      	lsrs	r3, r3, #22
+ 8000460:	f003 0301 	and.w	r3, r3, #1
+ 8000464:	60bb      	str	r3, [r7, #8]
+      pllm = RCC->PLLCFGR & RCC_PLLCFGR_PLLM;
+ 8000466:	4b24      	ldr	r3, [pc, #144]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 8000468:	685b      	ldr	r3, [r3, #4]
+ 800046a:	f003 033f 	and.w	r3, r3, #63	; 0x3f
+ 800046e:	607b      	str	r3, [r7, #4]
+      
+      if (pllsource != 0)
+ 8000470:	68bb      	ldr	r3, [r7, #8]
+ 8000472:	2b00      	cmp	r3, #0
+ 8000474:	d00c      	beq.n	8000490 <SystemCoreClockUpdate+0x84>
+      {
+        /* HSE used as PLL clock source */
+        pllvco = (HSE_VALUE / pllm) * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6);
+ 8000476:	4a23      	ldr	r2, [pc, #140]	; (8000504 <SystemCoreClockUpdate+0xf8>)
+ 8000478:	687b      	ldr	r3, [r7, #4]
+ 800047a:	fbb2 f3f3 	udiv	r3, r2, r3
+ 800047e:	4a1e      	ldr	r2, [pc, #120]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 8000480:	6852      	ldr	r2, [r2, #4]
+ 8000482:	0992      	lsrs	r2, r2, #6
+ 8000484:	f3c2 0208 	ubfx	r2, r2, #0, #9
+ 8000488:	fb02 f303 	mul.w	r3, r2, r3
+ 800048c:	617b      	str	r3, [r7, #20]
+ 800048e:	e00b      	b.n	80004a8 <SystemCoreClockUpdate+0x9c>
+      }
+      else
+      {
+        /* HSI used as PLL clock source */
+        pllvco = (HSI_VALUE / pllm) * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6);
+ 8000490:	4a1b      	ldr	r2, [pc, #108]	; (8000500 <SystemCoreClockUpdate+0xf4>)
+ 8000492:	687b      	ldr	r3, [r7, #4]
+ 8000494:	fbb2 f3f3 	udiv	r3, r2, r3
+ 8000498:	4a17      	ldr	r2, [pc, #92]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 800049a:	6852      	ldr	r2, [r2, #4]
+ 800049c:	0992      	lsrs	r2, r2, #6
+ 800049e:	f3c2 0208 	ubfx	r2, r2, #0, #9
+ 80004a2:	fb02 f303 	mul.w	r3, r2, r3
+ 80004a6:	617b      	str	r3, [r7, #20]
+      }
+
+      pllp = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >>16) + 1 ) *2;
+ 80004a8:	4b13      	ldr	r3, [pc, #76]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 80004aa:	685b      	ldr	r3, [r3, #4]
+ 80004ac:	0c1b      	lsrs	r3, r3, #16
+ 80004ae:	f003 0303 	and.w	r3, r3, #3
+ 80004b2:	3301      	adds	r3, #1
+ 80004b4:	005b      	lsls	r3, r3, #1
+ 80004b6:	60fb      	str	r3, [r7, #12]
+      SystemCoreClock = pllvco/pllp;
+ 80004b8:	697a      	ldr	r2, [r7, #20]
+ 80004ba:	68fb      	ldr	r3, [r7, #12]
+ 80004bc:	fbb2 f3f3 	udiv	r3, r2, r3
+ 80004c0:	4a0e      	ldr	r2, [pc, #56]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 80004c2:	6013      	str	r3, [r2, #0]
+      break;
+ 80004c4:	e003      	b.n	80004ce <SystemCoreClockUpdate+0xc2>
+    default:
+      SystemCoreClock = HSI_VALUE;
+ 80004c6:	4b0d      	ldr	r3, [pc, #52]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 80004c8:	4a0d      	ldr	r2, [pc, #52]	; (8000500 <SystemCoreClockUpdate+0xf4>)
+ 80004ca:	601a      	str	r2, [r3, #0]
+      break;
+ 80004cc:	bf00      	nop
+  }
+  /* Compute HCLK frequency --------------------------------------------------*/
+  /* Get HCLK prescaler */
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
+ 80004ce:	4b0a      	ldr	r3, [pc, #40]	; (80004f8 <SystemCoreClockUpdate+0xec>)
+ 80004d0:	689b      	ldr	r3, [r3, #8]
+ 80004d2:	091b      	lsrs	r3, r3, #4
+ 80004d4:	f003 030f 	and.w	r3, r3, #15
+ 80004d8:	4a0b      	ldr	r2, [pc, #44]	; (8000508 <SystemCoreClockUpdate+0xfc>)
+ 80004da:	5cd3      	ldrb	r3, [r2, r3]
+ 80004dc:	613b      	str	r3, [r7, #16]
+  /* HCLK frequency */
+  SystemCoreClock >>= tmp;
+ 80004de:	4b07      	ldr	r3, [pc, #28]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 80004e0:	681a      	ldr	r2, [r3, #0]
+ 80004e2:	693b      	ldr	r3, [r7, #16]
+ 80004e4:	fa22 f303 	lsr.w	r3, r2, r3
+ 80004e8:	4a04      	ldr	r2, [pc, #16]	; (80004fc <SystemCoreClockUpdate+0xf0>)
+ 80004ea:	6013      	str	r3, [r2, #0]
+}
+ 80004ec:	bf00      	nop
+ 80004ee:	371c      	adds	r7, #28
+ 80004f0:	46bd      	mov	sp, r7
+ 80004f2:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004f6:	4770      	bx	lr
+ 80004f8:	40023800 	.word	0x40023800
+ 80004fc:	20000000 	.word	0x20000000
+ 8000500:	00f42400 	.word	0x00f42400
+ 8000504:	017d7840 	.word	0x017d7840
+ 8000508:	080005c0 	.word	0x080005c0
+
+0800050c <Reset_Handler>:
 
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
   ldr   r0, =_estack
- 8000a90:	480d      	ldr	r0, [pc, #52]	; (8000ac8 <LoopForever+0x2>)
+ 800050c:	480d      	ldr	r0, [pc, #52]	; (8000544 <LoopForever+0x2>)
   mov   sp, r0          /* set stack pointer */
- 8000a92:	4685      	mov	sp, r0
+ 800050e:	4685      	mov	sp, r0
 /* Call the clock system initialization function.*/
   bl  SystemInit
- 8000a94:	f7ff ffea 	bl	8000a6c <SystemInit>
+ 8000510:	f7ff ff6a 	bl	80003e8 <SystemInit>
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
- 8000a98:	480c      	ldr	r0, [pc, #48]	; (8000acc <LoopForever+0x6>)
+ 8000514:	480c      	ldr	r0, [pc, #48]	; (8000548 <LoopForever+0x6>)
   ldr r1, =_edata
- 8000a9a:	490d      	ldr	r1, [pc, #52]	; (8000ad0 <LoopForever+0xa>)
+ 8000516:	490d      	ldr	r1, [pc, #52]	; (800054c <LoopForever+0xa>)
   ldr r2, =_sidata
- 8000a9c:	4a0d      	ldr	r2, [pc, #52]	; (8000ad4 <LoopForever+0xe>)
+ 8000518:	4a0d      	ldr	r2, [pc, #52]	; (8000550 <LoopForever+0xe>)
   movs r3, #0
- 8000a9e:	2300      	movs	r3, #0
+ 800051a:	2300      	movs	r3, #0
   b LoopCopyDataInit
- 8000aa0:	e002      	b.n	8000aa8 <LoopCopyDataInit>
+ 800051c:	e002      	b.n	8000524 <LoopCopyDataInit>
 
-08000aa2 <CopyDataInit>:
+0800051e <CopyDataInit>:
 
 CopyDataInit:
   ldr r4, [r2, r3]
- 8000aa2:	58d4      	ldr	r4, [r2, r3]
+ 800051e:	58d4      	ldr	r4, [r2, r3]
   str r4, [r0, r3]
- 8000aa4:	50c4      	str	r4, [r0, r3]
+ 8000520:	50c4      	str	r4, [r0, r3]
   adds r3, r3, #4
- 8000aa6:	3304      	adds	r3, #4
+ 8000522:	3304      	adds	r3, #4
 
-08000aa8 <LoopCopyDataInit>:
+08000524 <LoopCopyDataInit>:
 
 LoopCopyDataInit:
   adds r4, r0, r3
- 8000aa8:	18c4      	adds	r4, r0, r3
+ 8000524:	18c4      	adds	r4, r0, r3
   cmp r4, r1
- 8000aaa:	428c      	cmp	r4, r1
+ 8000526:	428c      	cmp	r4, r1
   bcc CopyDataInit
- 8000aac:	d3f9      	bcc.n	8000aa2 <CopyDataInit>
+ 8000528:	d3f9      	bcc.n	800051e <CopyDataInit>
 
 /* Zero fill the bss segment. */
   ldr r2, =_sbss
- 8000aae:	4a0a      	ldr	r2, [pc, #40]	; (8000ad8 <LoopForever+0x12>)
+ 800052a:	4a0a      	ldr	r2, [pc, #40]	; (8000554 <LoopForever+0x12>)
   ldr r4, =_ebss
- 8000ab0:	4c0a      	ldr	r4, [pc, #40]	; (8000adc <LoopForever+0x16>)
+ 800052c:	4c0a      	ldr	r4, [pc, #40]	; (8000558 <LoopForever+0x16>)
   movs r3, #0
- 8000ab2:	2300      	movs	r3, #0
+ 800052e:	2300      	movs	r3, #0
   b LoopFillZerobss
- 8000ab4:	e001      	b.n	8000aba <LoopFillZerobss>
+ 8000530:	e001      	b.n	8000536 <LoopFillZerobss>
 
-08000ab6 <FillZerobss>:
+08000532 <FillZerobss>:
 
 FillZerobss:
   str  r3, [r2]
- 8000ab6:	6013      	str	r3, [r2, #0]
+ 8000532:	6013      	str	r3, [r2, #0]
   adds r2, r2, #4
- 8000ab8:	3204      	adds	r2, #4
+ 8000534:	3204      	adds	r2, #4
 
-08000aba <LoopFillZerobss>:
+08000536 <LoopFillZerobss>:
 
 LoopFillZerobss:
   cmp r2, r4
- 8000aba:	42a2      	cmp	r2, r4
+ 8000536:	42a2      	cmp	r2, r4
   bcc FillZerobss
- 8000abc:	d3fb      	bcc.n	8000ab6 <FillZerobss>
+ 8000538:	d3fb      	bcc.n	8000532 <FillZerobss>
 
 /* Call static constructors */
   bl __libc_init_array
- 8000abe:	f000 f811 	bl	8000ae4 <__libc_init_array>
+ 800053a:	f000 f811 	bl	8000560 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 8000ac2:	f7ff ff9f 	bl	8000a04 <main>
+ 800053e:	f7ff ff47 	bl	80003d0 <main>
 
-08000ac6 <LoopForever>:
+08000542 <LoopForever>:
 
 LoopForever:
     b LoopForever
- 8000ac6:	e7fe      	b.n	8000ac6 <LoopForever>
+ 8000542:	e7fe      	b.n	8000542 <LoopForever>
   ldr   r0, =_estack
- 8000ac8:	20020000 	.word	0x20020000
+ 8000544:	20020000 	.word	0x20020000
   ldr r0, =_sdata
- 8000acc:	20000000 	.word	0x20000000
+ 8000548:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8000ad0:	20000000 	.word	0x20000000
+ 800054c:	20000004 	.word	0x20000004
   ldr r2, =_sidata
- 8000ad4:	08000b4c 	.word	0x08000b4c
+ 8000550:	080005d8 	.word	0x080005d8
   ldr r2, =_sbss
- 8000ad8:	20000000 	.word	0x20000000
+ 8000554:	20000004 	.word	0x20000004
   ldr r4, =_ebss
- 8000adc:	2000003c 	.word	0x2000003c
+ 8000558:	20000020 	.word	0x20000020
 
-08000ae0 <ADC_IRQHandler>:
+0800055c <ADC_IRQHandler>:
  * @retval : None
 */
   .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
- 8000ae0:	e7fe      	b.n	8000ae0 <ADC_IRQHandler>
+ 800055c:	e7fe      	b.n	800055c <ADC_IRQHandler>
 	...
 
-08000ae4 <__libc_init_array>:
- 8000ae4:	b570      	push	{r4, r5, r6, lr}
- 8000ae6:	4d0d      	ldr	r5, [pc, #52]	; (8000b1c <__libc_init_array+0x38>)
- 8000ae8:	4c0d      	ldr	r4, [pc, #52]	; (8000b20 <__libc_init_array+0x3c>)
- 8000aea:	1b64      	subs	r4, r4, r5
- 8000aec:	10a4      	asrs	r4, r4, #2
- 8000aee:	2600      	movs	r6, #0
- 8000af0:	42a6      	cmp	r6, r4
- 8000af2:	d109      	bne.n	8000b08 <__libc_init_array+0x24>
- 8000af4:	4d0b      	ldr	r5, [pc, #44]	; (8000b24 <__libc_init_array+0x40>)
- 8000af6:	4c0c      	ldr	r4, [pc, #48]	; (8000b28 <__libc_init_array+0x44>)
- 8000af8:	f000 f818 	bl	8000b2c <_init>
- 8000afc:	1b64      	subs	r4, r4, r5
- 8000afe:	10a4      	asrs	r4, r4, #2
- 8000b00:	2600      	movs	r6, #0
- 8000b02:	42a6      	cmp	r6, r4
- 8000b04:	d105      	bne.n	8000b12 <__libc_init_array+0x2e>
- 8000b06:	bd70      	pop	{r4, r5, r6, pc}
- 8000b08:	f855 3b04 	ldr.w	r3, [r5], #4
- 8000b0c:	4798      	blx	r3
- 8000b0e:	3601      	adds	r6, #1
- 8000b10:	e7ee      	b.n	8000af0 <__libc_init_array+0xc>
- 8000b12:	f855 3b04 	ldr.w	r3, [r5], #4
- 8000b16:	4798      	blx	r3
- 8000b18:	3601      	adds	r6, #1
- 8000b1a:	e7f2      	b.n	8000b02 <__libc_init_array+0x1e>
- 8000b1c:	08000b44 	.word	0x08000b44
- 8000b20:	08000b44 	.word	0x08000b44
- 8000b24:	08000b44 	.word	0x08000b44
- 8000b28:	08000b48 	.word	0x08000b48
+08000560 <__libc_init_array>:
+ 8000560:	b570      	push	{r4, r5, r6, lr}
+ 8000562:	4d0d      	ldr	r5, [pc, #52]	; (8000598 <__libc_init_array+0x38>)
+ 8000564:	4c0d      	ldr	r4, [pc, #52]	; (800059c <__libc_init_array+0x3c>)
+ 8000566:	1b64      	subs	r4, r4, r5
+ 8000568:	10a4      	asrs	r4, r4, #2
+ 800056a:	2600      	movs	r6, #0
+ 800056c:	42a6      	cmp	r6, r4
+ 800056e:	d109      	bne.n	8000584 <__libc_init_array+0x24>
+ 8000570:	4d0b      	ldr	r5, [pc, #44]	; (80005a0 <__libc_init_array+0x40>)
+ 8000572:	4c0c      	ldr	r4, [pc, #48]	; (80005a4 <__libc_init_array+0x44>)
+ 8000574:	f000 f818 	bl	80005a8 <_init>
+ 8000578:	1b64      	subs	r4, r4, r5
+ 800057a:	10a4      	asrs	r4, r4, #2
+ 800057c:	2600      	movs	r6, #0
+ 800057e:	42a6      	cmp	r6, r4
+ 8000580:	d105      	bne.n	800058e <__libc_init_array+0x2e>
+ 8000582:	bd70      	pop	{r4, r5, r6, pc}
+ 8000584:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000588:	4798      	blx	r3
+ 800058a:	3601      	adds	r6, #1
+ 800058c:	e7ee      	b.n	800056c <__libc_init_array+0xc>
+ 800058e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000592:	4798      	blx	r3
+ 8000594:	3601      	adds	r6, #1
+ 8000596:	e7f2      	b.n	800057e <__libc_init_array+0x1e>
+ 8000598:	080005d0 	.word	0x080005d0
+ 800059c:	080005d0 	.word	0x080005d0
+ 80005a0:	080005d0 	.word	0x080005d0
+ 80005a4:	080005d4 	.word	0x080005d4
 
-08000b2c <_init>:
- 8000b2c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000b2e:	bf00      	nop
- 8000b30:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000b32:	bc08      	pop	{r3}
- 8000b34:	469e      	mov	lr, r3
- 8000b36:	4770      	bx	lr
+080005a8 <_init>:
+ 80005a8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80005aa:	bf00      	nop
+ 80005ac:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80005ae:	bc08      	pop	{r3}
+ 80005b0:	469e      	mov	lr, r3
+ 80005b2:	4770      	bx	lr
 
-08000b38 <_fini>:
- 8000b38:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000b3a:	bf00      	nop
- 8000b3c:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000b3e:	bc08      	pop	{r3}
- 8000b40:	469e      	mov	lr, r3
- 8000b42:	4770      	bx	lr
+080005b4 <_fini>:
+ 80005b4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80005b6:	bf00      	nop
+ 80005b8:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80005ba:	bc08      	pop	{r3}
+ 80005bc:	469e      	mov	lr, r3
+ 80005be:	4770      	bx	lr

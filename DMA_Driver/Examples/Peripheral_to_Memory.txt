@@ -13,7 +13,7 @@
 
 
 
-DMA_Init_Typedef Mem_to_Peri;
+DMA_Init_Typedef Peri_to_Mem;
 
 
 
@@ -27,10 +27,10 @@ int main(void)
 
 
 	Peri_to_Mem.DMA_Port = DMA2;
-	Peri_to_Mem.Stream = DMA2_Stream2;
-	Peri_to_Mem.channel = 2;
+	Peri_to_Mem.Stream = DMA2_Stream1;
+	Peri_to_Mem.channel = 1;
 	Peri_to_Mem.circular_buff_enable = 0;
-	Peri_to_Mem.direction = DMA_Direction_Memory_to_Peripheral;
+	Peri_to_Mem.direction = DMA_Direction_Peripheral_to_Memory;
 	Peri_to_Mem.memory_data_size = Half_Word;
 	Peri_to_Mem.periphera_data_size = Half_Word;
 	Peri_to_Mem.priority = 3;

@@ -1,322 +1,442 @@
-/**
- ******************************************************************************
- * @file           : DMA.c
- * @author         : Kunal Salvi
- * @brief          : Main program body
- ******************************************************************************
+/*
+ * DMA.c
+ *
+ *  Created on: Nov 23, 2022
+ *      Author: Kunal
  */
 
 
 #include "DMA.h"
-#include "DMA_Defines.h"
 
 
-
-volatile int stream;
-volatile int controller;
-
-
-
-
-
-void DMA_Init(DMA_Config *self)
+static void DMA_Flag_Update(DMA_Init_Typedef *DMA_Config)
 {
-	/*
-	 * Select DMA Controller
-	 */
-
-	if(self != NULL)
+	if(DMA_Config->DMA_Port == DMA1)
 	{
-		if(self->Controller_Typedef == DMA1)
+		if(DMA_Config -> Stream == DMA1_Stream0)
 		{
-			controller= 1;
-			/*
-			 *	Low Power mode is selected only when needed otherwise normal DMA is used
-			 */
-			if(self->Low_Power_Mode == DMA_Lowe_Power_Mode_Enable)
+			switch (DMA_Config->channel)
 			{
-				RCC -> AHB1ENR |= RCC_AHB1LPENR_DMA1LPEN;
-			}else
-			{
-				RCC -> AHB1ENR |= RCC_AHB1ENR_DMA1EN;
-			}
-
-			if(self->Stream_Typedef == DMA1_Stream0)
-			{
-				stream= 0;
-			}else if(self->Stream_Typedef == DMA1_Stream1)
-			{
-				stream= 1;
-			}else if(self->Stream_Typedef == DMA1_Stream2)
-			{
-				stream= 2;
-			}else if(self->Stream_Typedef == DMA1_Stream3)
-			{
-				stream= 3;
-			}else if(self->Stream_Typedef == DMA1_Stream4)
-			{
-				stream= 4;
-			}else if(self->Stream_Typedef == DMA1_Stream5)
-			{
-				stream= 5;
-			}else if(self->Stream_Typedef == DMA1_Stream6)
-			{
-				stream= 6;
-			}else if(self->Stream_Typedef == DMA1_Stream7)
-			{
-				stream= 7;
-			}
-
-		}
-		if(self->Controller_Typedef == DMA2)
-		{
-			controller= 2;
-			/*
-			 *	Low Power mode is selected only when needed otherwise normal DMA is used
-			 */
-			if(self->Low_Power_Mode == DMA_Lowe_Power_Mode_Enable)
-			{
-				RCC -> AHB1ENR |= RCC_AHB1LPENR_DMA2LPEN;
-			}else
-			{
-				RCC -> AHB1ENR |= RCC_AHB1ENR_DMA2EN;
-			}
-			if(self->Stream_Typedef == DMA1_Stream0)
-			{
-				stream= 0;
-			}else if(self->Stream_Typedef == DMA2_Stream1)
-			{
-				stream= 1;
-			}else if(self->Stream_Typedef == DMA2_Stream2)
-			{
-				stream= 2;
-			}else if(self->Stream_Typedef == DMA2_Stream3)
-			{
-				stream= 3;
-			}else if(self->Stream_Typedef == DMA2_Stream4)
-			{
-				stream= 4;
-			}else if(self->Stream_Typedef == DMA2_Stream5)
-			{
-				stream= 5;
-			}else if(self->Stream_Typedef == DMA2_Stream6)
-			{
-				stream= 6;
-			}else if(self->Stream_Typedef == DMA2_Stream7)
-			{
-				stream = 7;
+				case 0: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_0 = 1;
+					    break;
+				case 1: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_1 = 1;
+					    break;
+				case 2: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_2 = 1;
+					    break;
+				case 3: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_3 = 1;
+					    break;
+				case 4: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_4 = 1;
+					    break;
+				case 5: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_5 = 1;
+					    break;
+				case 6: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_6 = 1;
+					    break;
+				case 7: DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_7 = 1;
+					    break;
 			}
 		}
-
-		self ->	Stream_Typedef -> CR |= (self -> Channel			<< DMA_SxCR_CHSEL_Pos);		//Select Channel
-		self ->	Stream_Typedef -> CR |= (self -> Priority_Level		<< DMA_SxCR_PL_Pos);	    //Select Priority Level
-		self ->	Stream_Typedef -> CR |= (self -> Memory_Size		<< DMA_SxCR_MSIZE_Pos);	    //Select Memory Size
-		self ->	Stream_Typedef -> CR |= (self -> Peripheral_Size	<< DMA_SxCR_PSIZE_Pos);	    //Select Peripheral Size
-
-		if(self	->	Circular_Mode == DMA_Circular_Mode_Enable)
+/********************************************************************************************************/
+		if(DMA_Config -> Stream == DMA1_Stream1)
 		{
-			self ->	Stream_Typedef -> CR |= (self -> Circular_Mode	<<	DMA_SxCR_CIRC_Pos);	    //Enable circular mode
+			switch (DMA_Config->channel)
+			{
+				case 0: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_0 = 1;
+					    break;
+				case 1: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_1 = 1;
+					    break;
+				case 2: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_2 = 1;
+					    break;
+				case 3: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_3 = 1;
+					    break;
+				case 4: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_4 = 1;
+					    break;
+				case 5: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_5 = 1;
+					    break;
+				case 6: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_6 = 1;
+					    break;
+				case 7: DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_7 = 1;
+					    break;
+			}
 		}
-		else
+/**********************************************************************************************************/
+		if(DMA_Config -> Stream == DMA1_Stream2)
 		{
-			self -> Stream_Typedef -> CR &= ~(self -> Circular_Mode	<<	DMA_SxCR_CIRC_Pos);	    //Disable circular mode
+			switch (DMA_Config->channel)
+			{
+				case 0: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_0 = 1;
+					    break;
+				case 1: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_1 = 1;
+					    break;
+				case 2: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_2 = 1;
+					    break;
+				case 3: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_3 = 1;
+					    break;
+				case 4: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_4 = 1;
+					    break;
+				case 5: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_5 = 1;
+					    break;
+				case 6: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_6 = 1;
+					    break;
+				case 7: DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_7 = 1;
+					    break;
+			}
 		}
-		self -> Stream_Typedef -> CR |= (self -> Direction << DMA_SxCR_DIR_Pos);				//Direction of Data
-		self -> Stream_Typedef -> CR |= (self -> Flow_Control << DMA_SxCR_PFCTRL_Pos);			// Flow Control
+/*********************************************************************************************************/
+		if(DMA_Config -> Stream == DMA1_Stream3)
+		{
+			switch (DMA_Config->channel)
+			{
+				case 0: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_0 = 1;
+					    break;
+				case 1: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_1 = 1;
+					    break;
+				case 2: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_2 = 1;
+					    break;
+				case 3: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_3 = 1;
+					    break;
+				case 4: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_4 = 1;
+					    break;
+				case 5: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_5 = 1;
+					    break;
+				case 6: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_6 = 1;
+					    break;
+				case 7: DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_7 = 1;
+					    break;
+			}
+		}
+/**********************************************************************************************************/
+
+
+	}
+}
+
+
+int DMA_Init(DMA_Init_Typedef *DMA_Config)
+{
+	int ret_value = 0;
+	if(DMA_Config->DMA_Port == DMA1)
+	{
+		RCC -> AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+	}
+	else if(DMA_Config->DMA_Port == DMA2)
+	{
+		RCC -> AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+	}
+	else
+	{
+		ret_value = -1;
 	}
 
+	if( (DMA_Config -> Stream == DMA1_Stream0) || (DMA_Config -> Stream == DMA2_Stream0) ) DMA_Config -> stream_temp = 0;
+	if( (DMA_Config -> Stream == DMA1_Stream1) || (DMA_Config -> Stream == DMA2_Stream1) ) DMA_Config -> stream_temp = 1;
+	if( (DMA_Config -> Stream == DMA1_Stream2) || (DMA_Config -> Stream == DMA2_Stream2) ) DMA_Config -> stream_temp = 2;
+	if( (DMA_Config -> Stream == DMA1_Stream3) || (DMA_Config -> Stream == DMA2_Stream3) ) DMA_Config -> stream_temp = 3;
+	if( (DMA_Config -> Stream == DMA1_Stream4) || (DMA_Config -> Stream == DMA2_Stream4) ) DMA_Config -> stream_temp = 4;
+	if( (DMA_Config -> Stream == DMA1_Stream5) || (DMA_Config -> Stream == DMA2_Stream5) ) DMA_Config -> stream_temp = 5;
+	if( (DMA_Config -> Stream == DMA1_Stream6) || (DMA_Config -> Stream == DMA2_Stream6) ) DMA_Config -> stream_temp = 6;
+	if( (DMA_Config -> Stream == DMA1_Stream7) || (DMA_Config -> Stream == DMA2_Stream7) ) DMA_Config -> stream_temp = 7;
+
+	DMA_Config -> Stream->CR &= ~DMA_SxCR_EN; //Disable DMA Stream
+	DMA_Config -> Stream->CR |= (DMA_Config->channel) << DMA_SxCR_CHSEL_Pos; //Select Channel
+
+	DMA_Config -> Stream->CR |= DMA_SxCR_MINC; //Enable memory increment mode
+	//Disable Interrupt
+	DMA_Config -> Stream->CR  &= ~(DMA_SxCR_HTIE | DMA_SxCR_TCIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE);
+	DMA_Config -> Stream->FCR &= ~(DMA_SxFCR_FEIE);
+	//Enable Interrupt
+	DMA_Config -> Stream->CR  |= (DMA_Config->Half_Transfer_interrupt     << DMA_SxCR_HTIE_Pos);
+	DMA_Config -> Stream->CR  |= (DMA_Config->Transfer_Complete_interrupt << DMA_SxCR_TCIE_Pos);
+	DMA_Config -> Stream->CR  |= (DMA_Config->Transfer_Error_interrupt    << DMA_SxCR_TEIE_Pos);
+	DMA_Config -> Stream->CR  |= (DMA_Config->Direct_Mode_Error_interrupt << DMA_SxCR_DIR_Pos);
+	DMA_Config -> Stream->FCR |= (DMA_Config->FIFO_Overrun_Underrun_interrupt << DMA_SxFCR_FEIE_Pos);
+
+	//Priority
+	DMA_Config -> Stream->CR &= ~DMA_SxCR_PL;
+	DMA_Config -> Stream->CR |=  DMA_Config->priority << DMA_SxCR_PL_Pos;
+
+	//Direction
+	DMA_Config -> Stream->CR &= ~DMA_SxCR_DIR;
+	DMA_Config -> Stream->CR |=  DMA_Config->direction << DMA_SxCR_DIR_Pos;
+
+	return ret_value;
 
 }
 
 
 
-void DMA_Interrupt_Init(DMA_Config *self)
+//int DMA_Trigger(DMA_Init_Typedef *DMA_Config)
+//{
+//	int ret_value = 0;
+//	DMA_Config->Stream->M0AR = (uint32_t)(DMA_Config->Desitnation_Address);
+//	DMA_Config->Stream->PAR  = (uint32_t)(DMA_Config->Source_Address);
+//	DMA_Config->Stream->NDTR = DMA_Config->data_length;
+//	DMA_Config->Stream->CR |= DMA_SxCR_EN;
+//
+//	if(DMA_Config -> stream_temp <= 3)
+//	{
+//		switch (DMA_Config -> stream_temp)
+//		{
+//			case 0:
+//			{
+//				while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF0_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF0;
+//			}
+//				break;
+//			case 1:
+//			{
+//				while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF1_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF1;
+//			}
+//				break;
+//			case 2:
+//			{
+//				while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF2_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF2;
+//			}
+//				break;
+//			case 3:
+//			{
+//				while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF3_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF3;
+//			}
+//				break;
+//		}
+//
+//	}
+//	else
+//	{
+//		switch (DMA_Config -> stream_temp)
+//		{
+//			case 4:
+//			{
+//				while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF4_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF4;
+//			}
+//				break;
+//			case 5:
+//			{
+//				while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF5_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF5;
+//			}
+//				break;
+//			case 6:
+//			{
+//				while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF6_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF6;
+//			}
+//				break;
+//			case 7:
+//			{
+//				while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF7_Msk)) == 0){}
+//				DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF7;
+//			}
+//				break;
+//		}
+//	}
+//
+//	return ret_value;
+//}
+
+int DMA_Trigger(DMA_Init_Typedef *DMA_Config)
 {
-	self -> Stream_Typedef -> CR |=  self->Interrupt;
-	if(self -> Interrupt & DMA_Interrupt_Direct_Mode_Error)
+	int ret_value = 0;
+	DMA_Config->Stream->M0AR = (uint32_t)(DMA_Config->Desitnation_Address);
+	DMA_Config->Stream->PAR  = (uint32_t)(DMA_Config->Source_Address);
+	DMA_Config->Stream->NDTR = DMA_Config->data_length;
+	DMA_Config->Stream->CR |= DMA_SxCR_EN;
+
+	if(DMA_Config -> stream_temp == 0)
 	{
-		if(stream == 0)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 2);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 2);
-		}
-		if(stream == 1)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 8);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 8);
-		}
-		if(stream == 2)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 18);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 18);
-		}
-		if(stream == 3)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 24);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 24);
-		}
-		if(stream == 4)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 2);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 2);
-		}
-		if(stream == 5)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 8);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 8);
-		}
-		if(stream == 6)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 18);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 18);
-		}
-		if(stream == 7)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 24);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 24);
-		}
+		while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF0_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF0;
+	}
+	else if(DMA_Config -> stream_temp == 1)
+	{
+		while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF1_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF1;
+	}
+	else if(DMA_Config -> stream_temp == 2)
+	{
+		while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF2_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF2;
+	}
+	else if(DMA_Config -> stream_temp == 3)
+	{
+		while((DMA_Config -> DMA_Port -> LISR & (DMA_LISR_TCIF3_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> LIFCR |= DMA_LIFCR_CTCIF3;
+	}
+	else if(DMA_Config -> stream_temp == 4)
+	{
+		while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF4_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF4;
+	}
+	else if(DMA_Config -> stream_temp == 5)
+	{
+		while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF5_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF5;
+	}
+	else if(DMA_Config -> stream_temp == 6)
+	{
+		while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF6_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF6;
+	}
+	else if(DMA_Config -> stream_temp == 7)
+	{
+		while((DMA_Config -> DMA_Port -> HISR & (DMA_HISR_TCIF7_Msk)) == 0){}
+		DMA_Config -> DMA_Port -> HIFCR |= DMA_HIFCR_CTCIF7;
 	}
 
-	if(self -> Interrupt & DMA_Interrupt_Transfer_Error)
-	{
-		if(stream == 0)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 3);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 3);
-		}
-		if(stream == 1)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 9);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 9);
-		}
-		if(stream == 2)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 19);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 19);
-		}
-		if(stream == 3)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 25);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 25);
-		}
-		if(stream == 4)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 3);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 3);
-		}
-		if(stream == 5)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 9);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 9);
-		}
-		if(stream == 6)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 19);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 19);
-		}
-		if(stream == 7)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 25);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 25);
-		}
-	}
-
-	if(self -> Interrupt & DMA_Interrupt_Half_Transfer_Complete)
-	{
-
-		if(stream == 0)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 4);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 4);
-		}
-		if(stream == 1)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 10);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 10);
-		}
-		if(stream == 2)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 20);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 20);
-		}
-		if(stream == 3)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 26);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 26);
-		}
-		if(stream == 4)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 4);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 4);
-		}
-		if(stream == 5)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 10);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 10);
-		}
-		if(stream == 6)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 20);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 20);
-		}
-		if(stream == 7)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 26);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 26);
-		}
-	}
-
-	if(self -> Interrupt & DMA_Interrupt_Full_Transfer_Complete)
-	{
-
-		if(stream == 0)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 5);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 5);
-		}
-		if(stream == 1)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 11);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 11);
-		}
-		if(stream == 2)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 21);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 21);
-		}
-		if(stream == 3)
-		{
-			self -> Controller_Typedef -> LIFCR |=  (1 << 27);
-			self -> Controller_Typedef -> LISR  &= ~(1 << 27);
-		}
-		if(stream == 4)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 5);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 5);
-		}
-		if(stream == 5)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 11);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 11);
-		}
-		if(stream == 6)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 21);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 21);
-		}
-		if(stream == 7)
-		{
-			self -> Controller_Typedef -> HIFCR |=  (1 << 27);
-			self -> Controller_Typedef -> HISR  &= ~(1 << 27);
-		}
-	}
+	return ret_value;
 }
 
 
-void DMA_Trigger(DMA_Config *self)
+void DMA_DeInit(DMA_Init_Typedef *DMA_Config)
 {
-	self -> Stream_Typedef -> CR |= DMA_SxCR_EN;
-}
+	RCC -> AHB1ENR &= ~(RCC_AHB1ENR_DMA1EN | RCC_AHB1ENR_DMA2EN);
 
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_0_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_1_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_2_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_3_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_4_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_5_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_6_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_1_Flag->Stream_7_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_0_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_1_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_2_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_3_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_4_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_5_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_6_Flag->Channel_7 = vacant;
+
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_0 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_1 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_2 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_3 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_4 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_5 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_6 = vacant;
+	DMA_Config->Flags->DMA_2_Flag->Stream_7_Flag->Channel_7 = vacant;
+}
 
 
